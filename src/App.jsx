@@ -4,12 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 //new stuff
 import { Header } from './components/header/Header';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Routes, Route } from 'react-router';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      {/*<Routes>
+        <Route element={} path=''></Route>
+      </Routes>*/}
       <Header/>
       <div>
         <a href="https://vite.dev" target="_blank">
