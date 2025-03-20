@@ -1,0 +1,32 @@
+.logo {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    width: auto;
+}
+
+.link {
+    display: flex;
+    align-items: baseline;
+    color: white;
+    padding: 0;
+}
+
+.link:visited {
+    color: white;
+}
+
+.logoName {
+    width: auto;
+    font-size: 3rem;
+    padding: 0 0.25rem 0 0;
+    line-height: 1;
+}
+
+.logoVisual {
+    /*background-color: orange;*/
+    width: 50px;
+    height: 50px;
+    border-radius: 0 40px 0 0;
+    background-image: linear-gradient(45deg, red, yellow);
+}

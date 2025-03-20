@@ -1,0 +1,9 @@
+.firstContainer {
+    height: 25vh;
+    background-color:orange;
+}
+
+.secondContainer {
+    height: 75vh;
+    background-color: lightgray;
+}

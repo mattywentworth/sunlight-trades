@@ -1,0 +1,15 @@
+.container {
+    background-color: black;
+}
+
+.secondContainer {
+    height: 50vh;
+    background-color:goldenrod;
+    text-align: center;
+    color: black;
+}
+
+.thirdContainer {
+    height: 50vh;
+    background-color: gray
+}

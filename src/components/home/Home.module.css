@@ -1,0 +1,5 @@
+.container {
+    min-height: 25rem;
+    /*padding: var(--padding-container-doc-border);*/
+    background-color: var(--main-bg-color);
+}

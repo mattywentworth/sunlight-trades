@@ -1,0 +1,30 @@
+nav {
+    max-width: 40%;
+    min-width: 20%;
+}
+
+nav ul {
+    display: flex;
+    margin-right: 0.5rem;
+    list-style-type: none;
+    justify-content: right;
+}
+
+nav li {
+    width: auto;
+    text-align: center;
+    padding: 0rem;
+}
+
+nav li:hover {
+    background-color: gold;
+    color: black;
+}
+
+.navLink {
+    padding: 0.5rem 1rem;
+}
+
+.navLink:visited {
+    color: inherit;
+}

@@ -1,0 +1,11 @@
+footer {
+    padding: var(--padding-container-doc-border);
+    border-top: 1px solid white;
+    max-height: 6rem;
+    background-color: var(--bg-color-main);
+    position: relative;
+    top: 10vh;
+    /*bottom: 0;*/
+    /* Will probably need to adjust this after making header sticky */
+    z-index: 1;
+}

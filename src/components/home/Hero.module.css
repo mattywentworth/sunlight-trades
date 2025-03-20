@@ -1,0 +1,14 @@
+.container {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+.h1 {
+    padding: 6rem 3rem 3rem 3rem;
+    font-size: 4rem;
+}
+
+.h2 {
+    padding: 3rem;
+    font-size: 2rem;
+}

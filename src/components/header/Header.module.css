@@ -1,0 +1,13 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem; /* Should be a variable */
+    border-bottom: 1px solid white;
+    height: 10vh;
+    background-color: var(--bg-color-main);
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
