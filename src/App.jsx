@@ -11,6 +11,11 @@ import { PagePlaceholder } from './components/placeholders/PagePlaceholder';
 import { Home } from './components/home/Home';
 import { About } from './components/about/About';
 import { Login } from './components/login/Login';
+import { Account } from './components/account/Account';
+import { Summary } from './components/account/Summary';
+import { Bought } from './components/account/Bought';
+import { Sold } from './components/account/Sold';
+import { Watched } from './components/account/Watched';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route } from 'react-router';
@@ -24,6 +29,12 @@ function App() {
           <Route element={<Home/>} path='/' />
           <Route element={<About />} path='about' />
           <Route element={<Login/>} path='login'/>
+          <Route element={<Account/>} path='account/:user'>
+            <Route element={<Summary/>} path='summary'/>
+            <Route element={<Bought/>} path='bought'/>
+            <Route element={<Sold/>} path='sold'/>
+            <Route element={<Watched/>} path='watched'/>
+          </Route>
           <Route element={<PagePlaceholder/>} path='page' />
         </Route>
       </Routes>

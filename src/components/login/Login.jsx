@@ -23,7 +23,7 @@ export const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (username === password && username.length > 3) {
-            navigate('/about');
+            navigate('/account');
         } else {
             alert('invalid credentials');
         }

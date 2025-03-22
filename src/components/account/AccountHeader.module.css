@@ -1,0 +1,44 @@
+.container {
+    box-sizing: border-box;
+}
+
+.container p {
+    color: pink;
+}
+
+.container ul {
+    display: flex;
+    border-bottom: 1px solid white;
+}
+
+.container li {
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: black;
+    width: auto;
+    height: auto;
+    padding: auto;
+}
+
+.container a {
+    width: inherit;
+    height: inherit;
+    /*padding: 0.5rem;*/
+}
+
+/*.container a:hover {
+    background-color: gold;
+}*/
+
+.container a:visited {
+    color: inherit;
+}
+
+.activeTab {
+    background-color: white;
+    color: black;
+}
+
+.inactiveTab {
+    background-color: black;
+}
