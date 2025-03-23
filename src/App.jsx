@@ -30,7 +30,7 @@ function App() {
           <Route element={<About />} path='about' />
           <Route element={<Login/>} path='login'/>
           <Route element={<Account/>} path='account/:user'>
-            <Route element={<Summary/>} path='summary'/>
+            {/*<Route element={<Summary/>} path='summary'/>*/}
             <Route element={<Bought/>} path='bought'/>
             <Route element={<Sold/>} path='sold'/>
             <Route element={<Watched/>} path='watched'/>

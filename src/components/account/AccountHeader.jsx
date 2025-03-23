@@ -1,76 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import styles from './AccountHeader.module.css';
 
 export const AccountHeader = () => {
 
-    //onClick - chnage the background color to something. onClick, if it's another element, remove the background color on
-    //previus and add to new
+    /*
+    if i use the route param :accountTab and do param.accountTab on each 
+    */
 
     const [clickedId, setClickedId] = useState('test1');
-    {/*const accountTabsList = document.getElementById('account-tabs').children;
-    const handleTabClick = (e) => {
-        const id = e.target.id;
-        setClickedId(id);
-    }*/}
 
-    {/*accountTabsList.forEach(element => {
-        const elementId = element.id;
-        const selectedElement = document.getElementById(elementId);
-        alert(elementId);
-        if (elementId === idClicked) {
-            selectedElement.style.backgroundColor = 'white';
-            selectedElement.style.color = 'black';
-        } else {
-            selectedElement.style.backgroundColor = 'black';
-            selectedElement.style.color = 'white';
-        }
-    })*/}
-
-    const handleTabClick = (e) => {
-        //alert(req.params);
-        e.target.id.style.backgroundColor = 'white';
-    }
-
-    {/*const handleTabClick = (e) => {
-        const idClicked = e.target.id;
-        document.getElementById(idClicked).style.backgroundColor = 'white';
-        const accountTabsList = document.getElementById('account-tabs').children;
-        alert(accountTabsList[0].id);
-        const element = document.getElementById(idClicked);
-        element.style.backgroundColor = 'white';
-        element.style.color = 'black';
-
-        accountTabsList.forEach(element => {
-            const elementId = element.id;
-            const selectedElement = document.getElementById(elementId);
-            alert(elementId);
-            if (elementId === idClicked) {
-                selectedElement.style.backgroundColor = 'white';
-                selectedElement.style.color = 'black';
-            } else {
-                selectedElement.style.backgroundColor = 'black';
-                selectedElement.style.color = 'white';
-            }
-        })
-
-    }*/}
+    //Probably a more efficient way to write this in the event that I want to make changes. Possible to do this with className and values in css module??
+    const handleTabClick = ({ isActive, isPending }) => ({
+        backgroundColor: isActive ? "white" : isPending ? "white" : "black",
+        color: isActive ? "black" : isPending ? "black" : "white"
+    })
 
     return (
         <div className={styles.container}>
-            <p>test</p>
-            {/*<ul id='account-tabs'>
-                <li id='test12'><Link to='/account/:user/summary' id='test1' onClick={handleTabClick} className={styles.test}>Summary</Link></li>
-                <li><Link to='/account/:user/bought' id='test2' onClick={handleTabClick}>Bought</Link></li>
-                <li><Link to='/account/:user/sold' id='test3' onClick={handleTabClick}>Sold</Link></li>
-                <li><Link to='/account/:user/watched' id='test4' onClick={handleTabClick}>Watched</Link></li>
-            </ul>*/}
-            <div id='account-tabs'>
-                <Link to='/account/:user/summary' id='test1' onClick={handleTabClick}>Summary</Link>
-                <Link to='/account/:user/bought' id='test2' onClick={handleTabClick}>Bought</Link>
-                <Link to='/account/:user/sold' id='test3' onClick={handleTabClick}>Sold</Link>
-                <Link to='/account/:user/watched' id='test4' onClick={handleTabClick}>Watched</Link>
-            </div>
+            <ul id='account-tabs'>
+                {/*<NavLink to='/account/:user/summary' id='test1' style={handleTabClick}>Summary</NavLink>*/}
+                <NavLink to='/account/:user/bought' id='test2' style={handleTabClick}>Bought</NavLink>
+                <NavLink to='/account/:user/sold' id='test3' style={handleTabClick}>Sold</NavLink>
+                <NavLink to='/account/:user/watched' id='test4' style={handleTabClick} className={styles.test}>Watched</NavLink>
+            </ul>
         </div>
     )
 }

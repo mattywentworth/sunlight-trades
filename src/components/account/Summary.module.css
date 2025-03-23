@@ -1,0 +1,15 @@
+.container {
+    border: 1px solid white;
+    margin: 1rem 0 3rem 0;
+    padding: 3rem;
+}
+
+.subContainerShow {
+    display: block;
+    border: 1px dotted white;
+}
+
+.subContainerHide {
+    display: none;
+    border: 1px dotted white;
+}

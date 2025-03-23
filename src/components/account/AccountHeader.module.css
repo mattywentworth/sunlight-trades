@@ -6,6 +6,7 @@
     color: pink;
 }
 
+
 .container ul {
     display: flex;
     border-bottom: 1px solid white;
@@ -21,9 +22,24 @@
 }
 
 .container a {
-    width: inherit;
-    height: inherit;
+    width: auto;
+    margin-right: 2px;
+    padding: 0.25rem 1rem;
+    border-radius: 10px 10px 0 0;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 0px;
+    border-color: white;
+    border-style: solid;
     /*padding: 0.5rem;*/
+}
+
+.container a:hover {
+    background-color: gold;
+}
+
+.test:hover {
+    background-color: gold;
 }
 
 /*.container a:hover {
@@ -32,13 +48,4 @@
 
 .container a:visited {
     color: inherit;
-}
-
-.activeTab {
-    background-color: white;
-    color: black;
-}
-
-.inactiveTab {
-    background-color: black;
 }
