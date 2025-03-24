@@ -1,12 +1,36 @@
 .container {
-    border: 1px solid white;
-    margin: 1rem 0 3rem 0;
-    padding: 3rem;
+    margin-bottom: 3rem;
 }
 
-.subContainerShow {
+.summaryButton {
+    border-radius: 10px 10px 0 0;
+    background-color: white;
+    color: black;
+}
+
+.buttonBorderShow {
     display: block;
-    border: 1px dotted white;
+    border-top: 1px solid white;
+}
+
+.buttonBorderHide {
+    display: none;
+}
+
+.containerShow {
+    background-color: gray;
+    margin: 1rem 0 3rem 0;
+    padding: 2rem;
+}
+
+.containerHide {
+    display: none;
+}
+
+.contentContainer {
+    display: block;
+    border: 1px solid white;
+    padding: 2rem;
 }
 
 .subContainerHide {

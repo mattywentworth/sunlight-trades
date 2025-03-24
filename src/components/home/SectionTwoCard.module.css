@@ -1,0 +1,19 @@
+.container {
+    background-color:firebrick;
+    color: white;
+    width: 20%;
+    text-align: center;
+    margin: 1rem;
+    padding: 0.6rem;
+    border-radius: 20px;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+}
+
+/*.description {
+
+}*/

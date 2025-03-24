@@ -1,0 +1,24 @@
+.container {
+    padding: 3rem;
+}
+
+.container h1 {
+    margin-bottom: 2rem;
+}
+
+.container ul {
+    list-style: inside;
+    margin-bottom: 2rem;
+}
+
+.usernameInputContainer, .passwordInputContainer {
+    display: flex;
+}
+
+.usernameInputContainer input, .passwordInputContainer input {
+    margin-right: 2rem;
+}
+
+/*.passwordInputContainer {
+    display: flex;
+}*/

@@ -1,0 +1,25 @@
+.container {
+    background-color: goldenrod;
+    color: black;
+    padding: 2rem 6rem;
+    text-align: center;
+}
+
+.container div {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.textOne {
+    font-size: 1.5rem;
+}
+
+.textTwo {
+    font-size: 1.5rem;
+}
+
+.textThree {
+    font-weight: 700;
+    font-size: 2rem;
+}

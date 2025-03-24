@@ -1,6 +1,12 @@
 .container {
     border: 1px solid gray;
-    width: 500px;
-    height: 80px;
+    width: 1000px;
+    height: auto;
     margin-bottom: 2rem;
+    display: flex;
+}
+
+.container img {
+    width: 75px;
+    padding: 1rem;
 }

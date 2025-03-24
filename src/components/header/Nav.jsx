@@ -11,9 +11,9 @@ export const Nav = () => {
     return (
         <nav>
             <ul>
-                <li><NavLink to='about' className={styles.navLink}>About</NavLink></li>
-                <li><NavLink to='login' className={styles.navLink}>Log In</NavLink></li>
-                <li><NavLink to='signup' className={styles.navLink}>Sign Up</NavLink></li>
+                <li><NavLink to='about' className={styles.navLinkAbout} id='nav-about'>About</NavLink></li>
+                <li className={styles.account}><NavLink to='login' className={styles.navLinkLogIn} id='nav-log-in'>Log In</NavLink></li>
+                <li className={styles.account}><NavLink to='signup' className={styles.navLinkSignUp} id='nav-sign-up'>Sign Up</NavLink></li>
             </ul>
         </nav>
     )
