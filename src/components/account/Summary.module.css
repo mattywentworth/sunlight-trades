@@ -28,9 +28,9 @@
 }
 
 .contentContainer {
-    display: block;
+    display: flex;
     border: 1px solid white;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .subContainerHide {

@@ -102,6 +102,16 @@ input {
   margin: 0 0 0.5rem 0;
 }
 
+textarea {
+  display: block;
+  border-radius: 0;
+  color: black;
+  background-color: floralwhite;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 input:focus-visible {
   outline: 5px auto goldenrod;
 }

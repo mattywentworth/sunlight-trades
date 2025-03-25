@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styles from './Summary.module.css';
+import { SummaryCard } from './SummaryCard';
 
 export const Summary = () => {
+
+    const testArray = ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4'];
 
     const [buttonInnerHTML, setButtonInnerHTML] = useState('▲ Hide Summary ▲');
     const [display, setDisplay] = useState(true);
@@ -24,9 +27,12 @@ export const Summary = () => {
             <div className={display ? styles.buttonBorderHide : styles.buttonBorderShow}></div>
             <div className={display ? styles.subContainerShow : styles.subContainerHide}>
                 <div className={styles.contentContainer}>
-                    <div>This is SUMMARY info</div>
+                    {/*<div>This is SUMMARY info</div>
                     <div>More info</div>
-                    <div>Even more info</div>
+                    <div>Even more info</div>*/}
+                    {testArray.map(element => {
+                        return <SummaryCard test={element}/>;
+                    })}
                 </div>
             </div>
         </div>

@@ -1,0 +1,22 @@
+.container {
+    display: flex
+}
+
+.inputSection {
+    margin-bottom: 2rem;
+}
+
+input[type='radio'] {
+    margin: 0 0.5rem 0 0;
+}
+
+.radioDuo {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+/*.thesisTextArea {
+    width: 300px;
+    height: 200px;
+}*/

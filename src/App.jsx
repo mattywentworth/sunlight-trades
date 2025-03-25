@@ -16,6 +16,8 @@ import { Summary } from './components/account/Summary';
 import { Bought } from './components/account/Bought';
 import { Sold } from './components/account/Sold';
 import { Watched } from './components/account/Watched';
+import { AddAsset } from './components/account/AddAsset';
+import { Principles } from './components/account/Principles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route } from 'react-router';
@@ -34,6 +36,8 @@ function App() {
             <Route element={<Bought/>} path='bought'/>
             <Route element={<Sold/>} path='sold'/>
             <Route element={<Watched/>} path='watched'/>
+            <Route element={<AddAsset/>} path='add-asset' />
+            <Route element={<Principles/>} path='principles'/>
           </Route>
           <Route element={<PagePlaceholder/>} path='page' />
         </Route>
