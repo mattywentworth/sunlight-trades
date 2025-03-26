@@ -7,7 +7,8 @@ const heroHeaderOptions = {
     c: 'Are you learning from your trading successes and mistakes?',
     d: 'Do you really understand your trading decisions?',
     e: 'Do you understand your trading activity?',
-    f: 'How are emotions impacting your trading activity/behavior/decisions?'
+    f: 'How are emotions impacting your trading activity/behavior/decisions?',
+    g: 'How does psychology impact your trading decisions?'
 }
 
 const heroSubHeaderOptions = {
