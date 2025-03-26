@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './AddAssetForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/searchSlice';
+import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/searchTermSlice';
 import { restClient } from '@polygon.io/client-js';
+//Probably need to edit lines below to use createAsyncThunk
+import { updateSearchResults } from '../../features/add-asset/searchResultsSlice';
 
 
 export const AddAssetSearch = () => {
@@ -22,29 +24,48 @@ export const AddAssetSearch = () => {
     const polygonAPIKey = import.meta.env.VITE_API_KEY_POLYGON;
     const rest = restClient(polygonAPIKey);
     
-    const reqResponse = () => {
+    const reqResponse = async (term) => {
         rest.reference.tickers({
             market: "stocks",
-            search: addAssetSearchTerm,
+            search: term, //addAssetSearchTerm,
             active: "true",
             order: "asc",
             limit: 100,
             sort: "ticker"
         }).then((data) => {
             console.log(data);
+            return data;
+            //console.log(data.results);
         }).catch(e => {
             console.error('An error happened:', e);
         });
     }
 
-    const handleAssetSearchSubmit = (e) => {
+    const testRequest = async (term) => {
+        try {
+            const response = await rest.reference.tickers({
+                market: "stocks",
+                search: term, //addAssetSearchTerm,
+                active: "true",
+                order: "asc",
+                limit: 100,
+                sort: "ticker"
+            });
+            return response;
+        } catch (error) {
+            console.log('There wan an error fetching tickers.', error);
+        }
+    }
+
+    const handleAssetSearchSubmit = async (e) => {
         e.preventDefault();
-        alert(addAssetSearchTerm);
-        const response = reqResponse();
-        alert(response.results);
+        const data = await testRequest(addAssetSearchTerm);
+        //alert(data.results[0].ticker);
+        const arrayOfCompanies = data.results;
+        dispatch(updateSearchResults(arrayOfCompanies));
     }
     
-    //Eng Polygon API test
+    //End Polygon API test
 
 
 
