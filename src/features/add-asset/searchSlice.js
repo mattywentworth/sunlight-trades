@@ -13,6 +13,8 @@ export const searchSlice = createSlice({
     }
 })
 
+export const selectSearchTerm = (state) => state.addAssetSearch;
+
 export const { updateSearchTerm } = searchSlice.actions;
 
 export default searchSlice.reducer;
