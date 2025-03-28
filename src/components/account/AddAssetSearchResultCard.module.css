@@ -1,10 +1,12 @@
 .container {
     background-color: black;
-    width: 30%;
+    width: 31%;
     margin: 0.5rem;
-    padding: 0.5rem;
-    border: 2px solid transparent;
-    display: flex;   
+    padding: 0.5rem 1rem;
+    border: 1px solid dimgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /*.container:hover {
@@ -16,7 +18,8 @@
 }*/
 
 .add {
-    width: 30%;
+    width: 20%;
+    background-color: dimgray;
 }
 
 .add:hover {

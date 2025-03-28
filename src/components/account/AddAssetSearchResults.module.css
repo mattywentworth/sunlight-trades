@@ -1,14 +1,26 @@
 .container {
-    background-color:dimgray;
-    border-radius: 10px;
+    background-color: var(--color-bg-section-dark);
+    /*border-radius: 10px;*/
+    padding: 1rem;
     margin-bottom: 1.5rem;
+    /*border-top: 1px solid #3c3043;*/
 }
 
 .containerHide {
     display: none;
 }
 
+.topDivider {
+    width: 95%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: #3c3043;
+}
+
 .searchResultsContainer {
     display: flex;
     flex-flow: row wrap;
+    /*justify-content: space-between;*/
+    /*padding: 1rem;*/
+    padding-top: 1rem;
 }

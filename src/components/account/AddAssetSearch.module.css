@@ -1,3 +1,35 @@
-.searchBarAndButton {
+.container {
+    background-color: var(--color-bg-section-dark);
+    padding: 1rem;
+}
+
+.searchLabel {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.searchInputAndButton {
     display: flex;
+}
+
+.searchInput {
+    margin-right: 1rem;
+    padding-left: 0.5rem;
+    width: 15rem;
+}
+
+/*.searchInput::placeholder {
+    padding-left: 0.5rem;
+}*/
+
+.searchButton {
+    color: white
+}
+
+.noResultsMessageShow {
+    display: block;
+}
+
+.noResultsMessageHide {
+    display: none;
 }

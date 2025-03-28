@@ -1,17 +1,21 @@
 import React from 'react';
 import styles from './AddAssetForm.module.css';
 
-export const InputGroupStopLoss = () => {
+export const InputGroupStopLoss = ( { stopLossYesNo, setStopLossYesNo } ) => {
+
+    const handleChange = (e) => {
+        setStopLossYesNo(e.target.value);
+    }
 
     return (
         <div className={styles.inputSection}>
             <legend >Do you have a stop loss order?</legend>
             <div className={styles.radioDuo}>
-                <input id='addAssetStopLossNo' name='stopLoss' type='radio' value='No' defaultChecked></input>
+                <input id='addAssetStopLossNo' name='stopLoss' type='radio' value='no' defaultChecked onChange={handleChange}></input>
                 <label htmlFor='addAssetStopLossNo'>No</label>
             </div>
             <div className={styles.radioDuo}>
-                <input id='addAssetStopLossYes' name='stopLoss' type='radio' value='Yes'></input>
+                <input id='addAssetStopLossYes' name='stopLoss' type='radio' value='yes' onChange={handleChange}></input>
                 <label htmlFor='addAssetStopLossYes'>Yes</label>
             </div>
             

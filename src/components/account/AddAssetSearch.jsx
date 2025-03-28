@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/searchTermSlice';
 import { restClient } from '@polygon.io/client-js';
 //Probably need to edit lines below to use createAsyncThunk
-import { updateSearchResults, selectSearchResults } from '../../features/add-asset/searchResultsSlice';
+import { updateSearchResults, selectSearchResults, selectSelectedSearchResult, updateSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
 
 
 export const AddAssetSearch = () => {
@@ -17,10 +17,11 @@ export const AddAssetSearch = () => {
 
     const searchTerm = useSelector(selectSearchTerm);
     const searchResults = useSelector(selectSearchResults);
+    const selectedSearchResult = useSelector(selectSelectedSearchResult);
 
     let noResultsMessage;
     if (typeof searchResults === 'object' && searchResults.length === 0) {
-        noResultsMessage = `Your search for '${searchTerm}' returned 0 results. Please try a new search.`
+        noResultsMessage = `Your search returned 0 results. Please try a new search.`
     }
 
 
@@ -69,6 +70,9 @@ export const AddAssetSearch = () => {
 
     const handleAssetSearchSubmit = async (e) => {
         e.preventDefault();
+        if (selectedSearchResult) {
+            dispatch(updateSelectedSearchResult(null));
+        }
         const data = await testRequest(addAssetSearchTerm);
         //alert(data.results[0].ticker);
         const arrayOfCompanies = data.results;
@@ -80,15 +84,15 @@ export const AddAssetSearch = () => {
 
 
     return (
-        <div className={styles.inputSection}>{/* Set this up to have the form conditionally display after the user has searched and chosen a company */}
+        <div className={stylesPlus.container}>{/* Set this up to have the form conditionally display after the user has searched and chosen a company */}
             <form onSubmit={handleAssetSearchSubmit}>
-                <label htmlFor='addAssetSearch'>Search for a Company to Buy or Watch</label>
-                <div className={stylesPlus.searchBarAndButton}>
-                    <input id='addAssetSearch' name='search' type='search' placeholder='eg. Google' onChange={handleSearchTermChange} value={addAssetSearchTerm}></input>
-                    <input type='submit'></input>
+                <label className={stylesPlus.searchLabel} htmlFor='addAssetSearch'>Search for a Company to Buy or Watch</label>
+                <div className={stylesPlus.searchInputAndButton}>
+                    <input className={stylesPlus.searchInput} id='addAssetSearch' name='search' type='search' placeholder='eg. "GOOGL" or "Google"' onChange={handleSearchTermChange} value={addAssetSearchTerm}></input>
+                    <input className={stylesPlus.searchButton} type='submit'></input>
                 </div>
             </form>
-            <div>{noResultsMessage}</div>
+            <div className={searchResults.length === 0 ? stylesPlus.noResultsMessageShow : stylesPlus.noResultsMessageHide} >{noResultsMessage}</div>
         </div>
     )
 }
