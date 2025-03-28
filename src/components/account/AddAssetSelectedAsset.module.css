@@ -1,0 +1,28 @@
+.container {
+    background-color: black;
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 2px solid transparent;
+    display: flex;   
+}
+
+/*.container:hover {
+    background-color: green;
+}*/
+
+/*.container:active {
+    border: 2px solid green;
+}*/
+
+.add {
+    width: 30%;
+}
+
+.add:hover {
+    background-color: green;
+}
+
+.companyInfo {
+    width: 70%;
+}

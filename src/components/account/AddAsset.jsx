@@ -4,6 +4,7 @@ import { AccountHeader } from './AccountHeader';
 import { AddAssetForm } from './AddAssetForm';
 import { AddAssetSearch } from './AddAssetSearch';
 import { AddAssetSearchResults } from './AddAssetSearchResults';
+import { AddAssetSelectedAsset } from './AddAssetSelectedAsset';
 
 export const AddAsset = () => {
 
@@ -12,6 +13,7 @@ export const AddAsset = () => {
             <AccountHeader/>
             <AddAssetSearch/>
             <AddAssetSearchResults/>
+            <AddAssetSelectedAsset/>
             <AddAssetForm />
         </div>
     )

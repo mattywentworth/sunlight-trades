@@ -3,3 +3,12 @@
     border-radius: 10px;
     margin-bottom: 1.5rem;
 }
+
+.containerHide {
+    display: none;
+}
+
+.searchResultsContainer {
+    display: flex;
+    flex-flow: row wrap;
+}

@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './AddAssetForm.module.css';
+import stylesPlus from './AddAssetSearch.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/searchTermSlice';
 import { restClient } from '@polygon.io/client-js';
 //Probably need to edit lines below to use createAsyncThunk
-import { updateSearchResults } from '../../features/add-asset/searchResultsSlice';
+import { updateSearchResults, selectSearchResults } from '../../features/add-asset/searchResultsSlice';
 
 
 export const AddAssetSearch = () => {
@@ -13,6 +14,15 @@ export const AddAssetSearch = () => {
     
     const addAssetSearchTerm = useSelector(selectSearchTerm); //useSelector(state => state.addAssetSearch.value);
     const dispatch = useDispatch();
+
+    const searchTerm = useSelector(selectSearchTerm);
+    const searchResults = useSelector(selectSearchResults);
+
+    let noResultsMessage;
+    if (typeof searchResults === 'object' && searchResults.length === 0) {
+        noResultsMessage = `Your search for '${searchTerm}' returned 0 results. Please try a new search.`
+    }
+
 
     const handleSearchTermChange = (e) => {
         const searchTerm = e.target.value;
@@ -71,9 +81,14 @@ export const AddAssetSearch = () => {
 
     return (
         <div className={styles.inputSection}>{/* Set this up to have the form conditionally display after the user has searched and chosen a company */}
-            <label htmlFor='addAssetSearch'>Search for a Company to Buy or Watch</label>
-            <input id='addAssetSearch' name='search' type='search' placeholder='eg. Google' onChange={handleSearchTermChange} value={addAssetSearchTerm}></input>
-            <input type='submit' onClick={handleAssetSearchSubmit}></input>
+            <form onSubmit={handleAssetSearchSubmit}>
+                <label htmlFor='addAssetSearch'>Search for a Company to Buy or Watch</label>
+                <div className={stylesPlus.searchBarAndButton}>
+                    <input id='addAssetSearch' name='search' type='search' placeholder='eg. Google' onChange={handleSearchTermChange} value={addAssetSearchTerm}></input>
+                    <input type='submit'></input>
+                </div>
+            </form>
+            <div>{noResultsMessage}</div>
         </div>
     )
 }
