@@ -1,0 +1,24 @@
+.container {
+    /*display: flex;*/
+    background-color: var(--color-bg-section-dark);
+    margin: 0 1rem 0 0rem;
+    padding: 1rem;
+    width: 25%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.update {
+    font-size: 0.75rem;
+    text-align: default;
+    width: auto;
+    background-color: dimgray;
+    border-radius: 10px;
+    padding: 0.25rem;
+    float: right;
+}
+
+.ratingContainer {
+    display: flex;
+    font-size: 1rem;
+}

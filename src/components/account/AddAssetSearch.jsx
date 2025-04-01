@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './AddAssetForm.module.css';
 import stylesPlus from './AddAssetSearch.module.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -80,6 +80,11 @@ export const AddAssetSearch = () => {
     }
     
     //End Polygon API test
+
+    /* Ok to use nested api calls instead of a useEffect??
+    useEffect(() => {
+        alert('arrayOfCompanies has changed');
+    }, [searchResults]);*/
 
 
 

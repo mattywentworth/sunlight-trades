@@ -1,0 +1,9 @@
+.container {
+    /*display: flex;*/
+    background-color: var(--color-bg-section-dark);
+    margin: 0 1rem 0 0;
+    padding: 1rem;
+    width: 25%;
+    text-align: center;
+    font-size: 1.5rem;
+}

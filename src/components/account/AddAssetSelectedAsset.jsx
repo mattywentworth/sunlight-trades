@@ -19,6 +19,7 @@ export const AddAssetSelectedAsset = () => {
     if (selectedSearchResult) {
         selectedSearchResultContent =
             <>
+                <img className={styles.logo} style={{backgroundImage: `url(${selectedSearchResult.icon})`}}/>
                 <div className={styles.companyInfo}>
                     <div>{selectedSearchResult.companyName}</div>
                     <div>{selectedSearchResult.ticker}</div>

@@ -3,6 +3,7 @@ import styles from './Bought.module.css';
 import { AssetCard } from './AssetCard';
 import { AccountHeader } from './AccountHeader';
 import { testBoughtArray } from '../../utils/testBoughtList';
+import { TableBought } from '../account/TableBought';
 
 export const Bought = () => {
 
@@ -13,10 +14,11 @@ export const Bought = () => {
         <div>
             <AccountHeader/>
             <div className={styles.assetCardContainer}>
+                <TableBought/>
                 {/*<AssetCard img={element.img} companyName={element.companyName} ticker={element.ticker} totalGainLoss={element.totalGainLoss} todaysGainLoss={element.todaysGainLoss} currentPrice={element.currentPrice} purchasePrice={element.purchasePrice}/>*/}
-                {testBoughtArray.map(element => {
+                {/*{testBoughtArray.map(element => {
                     return <AssetCard img={element.img} companyName={element.companyName} ticker={element.ticker} totalGainLoss={element.totalGainLoss} todaysGainLoss={element.todaysGainLoss} currentPrice={element.currentPrice} purchasePrice={element.purchasePrice}/>
-                })}
+                })}*/}
             </div>
         </div>
     )

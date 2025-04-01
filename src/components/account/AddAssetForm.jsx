@@ -9,8 +9,10 @@ import { InputGroupTakeProfit} from './InputGroupTakeProfit';
 import { InputGroupTimeHorizon } from './InputGroupTimeHorizon';
 import { InputGroupConfidence } from './InputGroupConfidence';
 import { InputGroupThesis } from './InputGroupThesis';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
+import { addAssetToAccount, selectAccountAssets } from '../../features/assets/accountAssetsSlice';
+import { useParams, useNavigate } from 'react-router';
 
 
 export const AddAssetForm = () => {
@@ -25,29 +27,54 @@ export const AddAssetForm = () => {
     const [confidenceLevel, setConfidenceLevel] = useState(5);
     const [thesis, setThesis] = useState('');
     
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const params = useParams();
 
     const selectedSearchResult = useSelector(selectSelectedSearchResult);
+    const accountAssets = useSelector(selectAccountAssets);
 
-    /*const handleSubmit = () => {
-        dispatch(someFutureFunc({
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const numAssets = accountAssets.length;
+        const nextID = numAssets + 1;
+        dispatch(addAssetToAccount({
+            assetId: nextID,
             ticker: selectedSearchResult.ticker,
             companyName: selectedSearchResult.companyName,
+            logo: selectedSearchResult.icon,
             watchOrBuy: watchOrBuy,
+            stockOrOptions: stockOrOptions,
+            //watchOrBuyDate: someDateFunc,
             quantity: assetQty,
             stopLossYesNo: stopLossYesNo,
             stopLossPercentage: stopLossPercentage,
             takeProfitYesNo: takeProfitYesNo,
             takeProfitPercentage: takeProfitPercentage,
-            confidenceLevel: confidenceLevel,
-            thesis: thesis
-        })
-    }*/
+            confidenceLevel: {
+                '1': confidenceLevel
+            },
+            thesis: {
+                '1': thesis
+            },
+            percentageOfPortfolio: null
+            //aiThesisReview: 'someFutureFeature'
+        }));
+        const user = params.user;
+        if (watchOrBuy === 'buy') {
+            navigate(`/account/${user}/bought`);
+        } else if (watchOrBuy === 'watch') {
+            navigate(`/account/${user}/watched`);
+        } else {
+            alert('Unrecognized Request');
+        }
+    }
 
     //radio elements below aren't allowing changes. seems like i'm using the 'checked' attribute incorrectly
     return (
         <div className={selectedSearchResult ? styles.containerShow : styles.containerHide}>
             
-            <form className={styles.addForm}>
+            <form className={styles.addForm} onSubmit={handleSubmit}>
                 <div className={styles.primaryFormInputs}>
                     <div className={styles.formColumn}>
                         <InputGroupWatchOrBuy watchOrBuy={watchOrBuy} setWatchOrBuy={setWatchOrBuy}/>
