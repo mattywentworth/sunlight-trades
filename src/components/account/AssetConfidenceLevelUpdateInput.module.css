@@ -1,0 +1,46 @@
+.containerShow {
+    display: default;
+    border: 1px solid gold;
+    padding: 0.5rem;
+}
+
+.containerHide {
+    display: none;
+}
+
+.containerShow label {
+    font-size: 1rem;
+    margin: 0 auto 0.5rem auto;
+}
+
+.rangeInput {
+    margin: 0 auto;
+}
+
+.containerShow p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.actionsShow {
+    display: flex;
+    padding: 0.5rem 0;
+    justify-content: center;
+}
+
+.actionsHide {
+    display: none;
+}
+
+.actionsShow button, .actionsShow input {
+    padding: 0.5rem;
+    height: 2rem;
+    line-height: 1;
+    font-size: 0.75rem;
+    color: white;
+    margin: 0 0.5rem;
+}
+
+.actionsShow button {
+    background-color:darkred;
+}

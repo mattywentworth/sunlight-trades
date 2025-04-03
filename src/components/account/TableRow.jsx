@@ -2,10 +2,19 @@ import React from 'react';
 import styles from './TableBought.module.css';
 import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
+import { useNavigate, useParams } from 'react-router';
 
-export const TableRow = ( { ticker, logo, stockOrOptions, confidenceLevel } ) => {
+export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLevel } ) => {
 
-    
+    const navigate = useNavigate();
+    const params = useParams();
+    //alert(params);
+
+    const user = params.user;
+
+    const navToAssetDetails = () => {
+        navigate(`/account/${user}/bought/${assetId}`)
+    }
 
     const accountAssets = useSelector(selectAccountAssets);
     let tableRow;
@@ -27,9 +36,9 @@ export const TableRow = ( { ticker, logo, stockOrOptions, confidenceLevel } ) =>
             <td>$350</td>
             <td>-5%</td>
             <td>$400</td>
-            <td>{confidenceLevel}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
+            <td>{confidenceLevel.level}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
             <td>
-                <button>Details</button>
+                <button onClick={navToAssetDetails}>Details</button>{/* Figure out proper usage here - button or Link element? */}
             </td>
         </>
     }

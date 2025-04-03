@@ -6,3 +6,17 @@
 .descriptions {
     display: flex;
 }
+
+.actions {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-bg-section-dark);
+    padding: 1rem;
+    margin: 1rem 0 0 0;
+    position: sticky;
+    bottom: 0;
+}
+
+.actions button {
+    margin: 0 1rem;
+}

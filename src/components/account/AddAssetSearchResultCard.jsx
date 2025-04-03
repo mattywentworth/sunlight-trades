@@ -49,7 +49,7 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
 
         //End icon API test
         const icon = imageUrl;
-        alert(icon);
+        //alert(icon);
         dispatch(updateSelectedSearchResult({
             ticker: ticker,
             companyName: name,

@@ -40,6 +40,7 @@ export const AddAssetForm = () => {
         const nextID = numAssets + 1;
         dispatch(addAssetToAccount({
             assetId: nextID,
+            dateAdded: Date(),
             ticker: selectedSearchResult.ticker,
             companyName: selectedSearchResult.companyName,
             logo: selectedSearchResult.icon,
@@ -51,9 +52,12 @@ export const AddAssetForm = () => {
             stopLossPercentage: stopLossPercentage,
             takeProfitYesNo: takeProfitYesNo,
             takeProfitPercentage: takeProfitPercentage,
-            confidenceLevel: {
-                '1': confidenceLevel
-            },
+            confidenceLevel: [
+                {
+                    dateAdded: Date(),
+                    level: confidenceLevel
+                }
+            ],
             thesis: {
                 '1': thesis
             },
@@ -62,9 +66,9 @@ export const AddAssetForm = () => {
         }));
         const user = params.user;
         if (watchOrBuy === 'buy') {
-            navigate(`/account/${user}/bought`);
+            navigate(`/account/${user}/overview/bought`);
         } else if (watchOrBuy === 'watch') {
-            navigate(`/account/${user}/watched`);
+            navigate(`/account/${user}/overview/watched`);
         } else {
             alert('Unrecognized Request');
         }

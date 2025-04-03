@@ -1,0 +1,31 @@
+.containerShow {
+    display: default;
+    border: 1px solid gold;
+    padding: 0.5rem;
+}
+
+.containerHide {
+    display: none;
+}
+
+.containerShow label {
+    margin: 0 0 0.5rem 0;
+}
+
+.actions {
+    display: flex;
+    padding: 0.5rem 0;
+}
+
+.actions button, .actions input {
+    padding: 0.5rem;
+    height: 2rem;
+    line-height: 1;
+    font-size: 0.75rem;
+    color: white;
+    margin: 0 1rem 0 0;
+}
+
+.actions button {
+    background-color:darkred;
+}

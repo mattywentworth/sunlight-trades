@@ -1,0 +1,17 @@
+.updateInProgressFalse {
+    background-color: goldenrod;
+    color: black;
+}
+
+.updateInProgressTrue {
+    background-color: darkred;
+}
+
+.submitUpdateShow {
+    display: default;
+    background-color: green;
+}
+
+.submitUpdateHide {
+    display: none;
+}

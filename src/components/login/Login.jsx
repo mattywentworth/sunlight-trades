@@ -60,7 +60,7 @@ export const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (username === password && username.length > 3) {
-            navigate(`/account/${username}/bought`);
+            navigate(`/account/${username}/overview/bought`);
         } else {
             alert('invalid credentials');
         }

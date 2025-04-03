@@ -41,7 +41,7 @@ function App() {
               <Route element={<AddAsset/>} path='add-asset' />
               <Route element={<Principles/>} path='principles'/>
             </Route>
-            <Route element={<AssetBought/>} path='asset/:assetID' />
+            <Route element={<AssetBought/>} path='bought/:assetID' />
           </Route>
           <Route element={<PagePlaceholder/>} path='page' />
         </Route>

@@ -3,13 +3,21 @@
     background-color: var(--color-bg-section-dark);
     margin: 0 1rem 0 0rem;
     padding: 1rem;
-    width: 25%;
+    width: 30%;
     text-align: center;
     font-size: 1.5rem;
 }
 
+.header {
+    display: flex;
+}
+
+.headerSides {
+    width: 20%;
+}
+
 .update {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     text-align: default;
     width: auto;
     background-color: dimgray;

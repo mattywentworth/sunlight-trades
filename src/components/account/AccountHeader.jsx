@@ -22,11 +22,11 @@ export const AccountHeader = () => {
         <div className={styles.container}>
             <ul id='account-tabs'>
                 {/*<NavLink to='/account/:user/summary' id='test1' style={handleTabClick}>Summary</NavLink>*/}
-                <NavLink to={`/account/${params.user}/bought`} id='test2' style={handleTabClick}>Bought</NavLink>
-                <NavLink to={`/account/${params.user}/sold`} id='test3' style={handleTabClick}>Sold</NavLink>
-                <NavLink to={`/account/${params.user}/watched`} id='test4' style={handleTabClick} className={styles.test}>Watched</NavLink>
-                <NavLink to={`/account/${params.user}/add-asset`} id='test5' style={handleTabClick} className={styles.test}>Add to a List</NavLink>
-                <NavLink to={`/account/${params.user}/principles`} id='test6' style={handleTabClick} className={styles.test}>My Principles</NavLink>
+                <NavLink to={`/account/${params.user}/overview/bought`} id='test2' style={handleTabClick}>Bought</NavLink>
+                <NavLink to={`/account/${params.user}/overview/sold`} id='test3' style={handleTabClick}>Sold</NavLink>
+                <NavLink to={`/account/${params.user}/overview/watched`} id='test4' style={handleTabClick} className={styles.test}>Watched</NavLink>
+                <NavLink to={`/account/${params.user}/overview/add-asset`} id='test5' style={handleTabClick} className={styles.test}>Add to a List</NavLink>
+                <NavLink to={`/account/${params.user}/overview/principles`} id='test6' style={handleTabClick} className={styles.test}>My Principles</NavLink>
             </ul>
         </div>
     )
