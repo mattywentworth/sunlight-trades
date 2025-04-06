@@ -34,6 +34,7 @@ body {
   /* CSS Vars */
   --bg-color-main: #000;
   --color-bg-section-dark: #1E1E1E;
+  --color-bg-section-dark-secondary: #343434;
   --color-red: #FF0000;
   --color-yellow: #FFFF00;
   --padding-container-doc-border: 2rem;
@@ -125,7 +126,7 @@ input[type='submit'] {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: green;
+  /*background-color: green;*/
   cursor: pointer;
   transition: border-color 0.25s;
 }

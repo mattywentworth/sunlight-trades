@@ -29,8 +29,11 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
                 }*/
             );
             const icon = response.results.branding.icon_url;
+            const urlQuery = `?apiKey=${polygonAPIKey}`;
+            const usableIcon = `${icon}${urlQuery}`;
+            alert(usableIcon);
             console.log(response);
-            return icon;
+            return usableIcon;
         } catch (error) {
             console.log('Error', error);
         }
@@ -48,12 +51,12 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
         const imageUrl = await fetchCompanyIcon(ticker);
 
         //End icon API test
-        const icon = imageUrl;
+        //const icon = imageUrl;
         //alert(icon);
         dispatch(updateSelectedSearchResult({
             ticker: ticker,
             companyName: name,
-            icon: icon //Must add '?apiKey=[insertAPIKey]' to url in order to access the icon
+            icon: imageUrl //Must add '?apiKey=[insertAPIKey]' to url in order to access the icon
         }));
     }
 

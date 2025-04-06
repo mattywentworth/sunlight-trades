@@ -26,6 +26,8 @@ export const AddAssetForm = () => {
     const [takeProfitPercentage, setTakeProfitPercentage] = useState(null);
     const [confidenceLevel, setConfidenceLevel] = useState(5);
     const [thesis, setThesis] = useState('');
+
+
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,9 +36,15 @@ export const AddAssetForm = () => {
     const selectedSearchResult = useSelector(selectSelectedSearchResult);
     const accountAssets = useSelector(selectAccountAssets);
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const numAssets = accountAssets.length;
+        const ticker = selectedSearchResult.ticker;
+        const companyName = selectedSearchResult.companyName;
+        const logo = selectedSearchResult.icon;
+        dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis}))
+        /*const numAssets = accountAssets.length;
         const nextID = numAssets + 1;
         dispatch(addAssetToAccount({
             assetId: nextID,
@@ -58,12 +66,13 @@ export const AddAssetForm = () => {
                     level: confidenceLevel
                 }
             ],
-            thesis: {
-                '1': thesis
-            },
-            percentageOfPortfolio: null
-            //aiThesisReview: 'someFutureFeature'
-        }));
+            thesis: [
+                {
+                    dateAdded: Date(),
+                    thesis: thesis
+                }
+            ]
+        }));*/
         const user = params.user;
         if (watchOrBuy === 'buy') {
             navigate(`/account/${user}/overview/bought`);

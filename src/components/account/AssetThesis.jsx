@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './AssetThesis.module.css';
 import { AssetThesisUpdateInput } from './AssetThesisUpdateInput';
+import { AssetThesisCard } from './AssetThesisCard';
+import { convertDateToText } from '../../utils/dates';
 
-export const AssetThesis = ( { thesis, updateInProgress, handleUpdateClick } ) => {
+export const AssetThesis = ( { thesis, updateInProgress, updatedThesis, setUpdatedThesis, thesisSaved, setThesisSaved, confidenceLevel, handleThesisSave, handleUpdateClick } ) => {
 
+    const initialThesis = thesis[0].thesis;
+
+    const readableDate = convertDateToText(thesis[0].dateAdded);
     
     return (
         <div className={styles.container}>
@@ -14,9 +19,13 @@ export const AssetThesis = ( { thesis, updateInProgress, handleUpdateClick } ) =
                     <button className={styles.update} onClick={handleUpdateClick}>Update</button>
                 </div>
             </div>
-            <AssetThesisUpdateInput updateInProgress={updateInProgress} handleUpdateClick={handleUpdateClick}/>
-            <div>{thesis[1]}</div>
-            {/* Past theses should appear here */}
+            <AssetThesisUpdateInput updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} updateInProgress={updateInProgress} handleThesisSave={handleThesisSave} thesisSaved={thesisSaved} handleUpdateClick={handleUpdateClick}/>
+            {/* AssetThesisCard will get .map'd */}
+            {thesis.map((thesisElement, index) => {
+                //alert(index);
+                return <AssetThesisCard thesisDate={thesisElement.dateAddedReadable} thesisText={thesisElement.thesis} confidence={confidenceLevel[index]} />
+            })}
+            {/*<AssetThesisCard thesisDate={thesis[0].dateAddedReadable} thesisText={thesis[0].thesis} />*/}
         </div>
     )
 }

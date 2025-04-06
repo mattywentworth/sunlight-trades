@@ -1,0 +1,17 @@
+.container {
+    background-color: var(--color-bg-section-dark-secondary);
+    margin: 0 0 1rem 0;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.dateAndConfidenceContainer {
+    font-size: 0.8rem;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dateAndConfidenceContainer div {
+    width: auto;
+}

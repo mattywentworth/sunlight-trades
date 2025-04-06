@@ -6,6 +6,13 @@ export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, updatedConf
         setUpdatedConfidenceLevel(e.target.value);
     }
 
+    let submitText;
+    if (confidenceLevelSaved) {
+        submitText = 'Edit Level';
+    } else {
+        submitText = 'Save Level';
+    }
+
     return (
         <form className={updateInProgress ? styles.containerShow : styles.containerHide}>
             <label for='confidence-level-update'>New confidence level:</label>
@@ -23,8 +30,9 @@ export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, updatedConf
                 <option value={9}></option>
                 <option value={10}></option>
             </datalist>*/}
-            <div className={confidenceLevelSaved ? styles.actionsHide : styles.actionsShow}>
-                <input type='submit' value='Save Update' onClick={handleConfidenceLevelSave}></input>
+            <div className={styles.actionsShow}> {/* confidenceLevelSaved ? styles.actionsHide :  */}
+                {/* BG color update below isn't working - is there something about input bg color that prevents that from happening? */}
+                <input className={confidenceLevelSaved ? styles.buttonBGColorSaved : styles.buttonBGColorUnsaved}type='submit' value={submitText} onClick={handleConfidenceLevelSave}></input>
                 <button onClick={handleUpdateClick}>Cancel</button>
             </div>
         </form>

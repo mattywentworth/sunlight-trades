@@ -2,6 +2,7 @@
     display: default;
     border: 1px solid gold;
     padding: 0.5rem;
+    margin: 0 0 1rem 0;
 }
 
 .containerHide {
@@ -28,4 +29,13 @@
 
 .actions button {
     background-color:darkred;
+}
+
+.submitInputSaved {
+    background-color: gold;
+    color: black;
+}
+
+.submitInputUnsaved {
+    background-color: green;
 }

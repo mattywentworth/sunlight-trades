@@ -17,7 +17,8 @@ const heroSubHeaderOptions = {
 }
 
 const moreCopyOptions = {
-    a: 'How can you repeat your wins and avoid repeating your losses if you don\'t truly understand your decision-making?',
+    a: 'something about trading not being as simple as one buy and one sell decision, but many decisions within those 2 where your psychology can get in the way, and its easy to forget all of those little decisions',
+    e: 'How can you repeat your wins and avoid repeating your losses if you don\'t truly understand your decision-making?',
     b: 'include a definition of post-hoc rationalization',
     c: 'include a definition of the fundamental attribution error',
     c: 'a Does This Sound Like You? section'

@@ -44,3 +44,12 @@
 .actionsShow button {
     background-color:darkred;
 }
+
+.buttonBGColorSaved {
+    background-color: gold;
+    color: black;
+}
+
+.buttonBGColorUnsaved {
+    background-color: green;
+}
