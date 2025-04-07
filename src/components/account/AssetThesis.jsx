@@ -4,7 +4,7 @@ import { AssetThesisUpdateInput } from './AssetThesisUpdateInput';
 import { AssetThesisCard } from './AssetThesisCard';
 import { convertDateToText } from '../../utils/dates';
 
-export const AssetThesis = ( { thesis, updateInProgress, updatedThesis, setUpdatedThesis, thesisSaved, setThesisSaved, confidenceLevel, handleThesisSave, handleUpdateClick } ) => {
+export const AssetThesis = ( { thesis, updateInProgress, sellInProgress, updatedThesis, setUpdatedThesis, thesisSaved, setThesisSaved, confidenceLevel, handleThesisSave, handleUpdateClick } ) => {
 
     const initialThesis = thesis[0].thesis;
 
@@ -19,7 +19,7 @@ export const AssetThesis = ( { thesis, updateInProgress, updatedThesis, setUpdat
                     <button className={styles.update} onClick={handleUpdateClick}>Update</button>
                 </div>
             </div>
-            <AssetThesisUpdateInput updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} updateInProgress={updateInProgress} handleThesisSave={handleThesisSave} thesisSaved={thesisSaved} handleUpdateClick={handleUpdateClick}/>
+            <AssetThesisUpdateInput updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} handleThesisSave={handleThesisSave} thesisSaved={thesisSaved} handleUpdateClick={handleUpdateClick}/>
             {/* AssetThesisCard will get .map'd */}
             {thesis.map((thesisElement, index) => {
                 //alert(index);

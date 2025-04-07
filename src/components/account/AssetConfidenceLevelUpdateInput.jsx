@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './AssetConfidenceLevelUpdateInput.module.css';
-export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, updatedConfidenceLevel, setUpdatedConfidenceLevel, handleConfidenceLevelSave, confidenceLevelSaved, handleUpdateClick }) => {
+export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, sellInProgress, updatedConfidenceLevel, setUpdatedConfidenceLevel, handleConfidenceLevelSave, confidenceLevelSaved, handleUpdateClick }) => {
 
     const handleChange = (e) => {
         setUpdatedConfidenceLevel(e.target.value);
@@ -14,7 +14,7 @@ export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, updatedConf
     }
 
     return (
-        <form className={updateInProgress ? styles.containerShow : styles.containerHide}>
+        <form className={updateInProgress || sellInProgress ? styles.containerShow : styles.containerHide}>
             <label for='confidence-level-update'>New confidence level:</label>
             <input className={styles.rangeInput} type='range' id='confidence-level-update' name='confidence-level-update' min={1} max={10} step={1} value={updatedConfidenceLevel}  onChange={handleChange} list='markers-confidence-level-update'></input>
             <p>{updatedConfidenceLevel}</p>

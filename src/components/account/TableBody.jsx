@@ -6,7 +6,12 @@ import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 export const TableBody = () => {
 
     const accountAssets = useSelector(selectAccountAssets);
-    const boughtAssets = accountAssets.filter(asset => asset.watchOrBuy === 'buy');
+    const boughtAssets = accountAssets.filter(asset => {
+        const actions = asset.watchBuySell;
+        const actionsLength = asset.watchBuySell.length;
+        const mostRecentAction = actions[actionsLength - 1];
+        return mostRecentAction.action === 'buy';
+    });
 
     let tableContent;
     if (boughtAssets) {

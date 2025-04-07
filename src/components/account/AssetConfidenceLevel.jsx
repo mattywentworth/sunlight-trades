@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './AssetConfidenceLevel.module.css'
 import { AssetConfidenceLevelUpdateInput } from './AssetConfidenceLevelUpdateInput';
 
-export const AssetConfidenceLevel = ( { confidenceLevel, updateInProgress, handleUpdateClick, updatedConfidenceLevel, setUpdatedConfidenceLevel, handleConfidenceLevelSave, confidenceLevelSaved } ) => {
+export const AssetConfidenceLevel = ( { confidenceLevel, updateInProgress, sellInProgress, handleUpdateClick, updatedConfidenceLevel, setUpdatedConfidenceLevel, handleConfidenceLevelSave, confidenceLevelSaved } ) => {
 
     //set conditional css so that it shows as "current" only if no edits have been made and "current" vs "initial" if edits have been made
     const numConfidenceLevels = confidenceLevel.length;
@@ -19,7 +19,7 @@ export const AssetConfidenceLevel = ( { confidenceLevel, updateInProgress, handl
                     <button className={styles.update} onClick={handleUpdateClick}>Update</button>
                 </div>
             </div>
-            <AssetConfidenceLevelUpdateInput updateInProgress={updateInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
+            <AssetConfidenceLevelUpdateInput updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
             <div className={styles.ratingContainer}>
                 <div>
                     <div>Current</div>

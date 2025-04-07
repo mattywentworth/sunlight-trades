@@ -47,7 +47,7 @@ tr:nth-child(even) {
 }
 
 th, td {
-    width: 10%;
+    width: 15%;
     text-align: left;
 }
 
@@ -70,6 +70,7 @@ th, td {
 
 .logo {
     width: 50px;
+    margin-right: 0.5rem;
 }
 
 td button {

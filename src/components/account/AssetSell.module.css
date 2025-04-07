@@ -1,3 +1,11 @@
 .sellButton {
     background-color: darkred;
 }
+
+.completeSellButtonShow {
+    display: default;
+}
+
+.completeSellButtonHide {
+    display: none;
+}

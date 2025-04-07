@@ -11,7 +11,7 @@ import { AssetSell } from './AssetSell';
 import { AssetUpdate } from './AssetUpdate';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAccountAssets, updateAsset } from '../../features/assets/accountAssetsSlice';
+import { selectAccountAssets, updateAsset, sellAsset } from '../../features/assets/accountAssetsSlice';
 import { convertDateToText } from '../../utils/dates';
 
 export const AssetBought = () => {
@@ -27,10 +27,16 @@ export const AssetBought = () => {
     const [updatedThesis, setUpdatedThesis] = useState('');
     const [confidenceLevelSaved, setConfidenceLevelSaved] = useState(false);
     const [thesisSaved, setThesisSaved] = useState(false);
+    const [sellInProgress, setSellInProgress] = useState(false);
 
     const handleUpdateClick = (e) => {
         e.preventDefault();
-        updateInProgress ? setUpdateInProgress(false) : setUpdateInProgress(true);
+        if (e.target.innerHTML === 'Update' || e.target.innerHTML === 'Cancel Update') {
+            updateInProgress ? setUpdateInProgress(false) : setUpdateInProgress(true);
+        } else if (e.target.innerHTML === 'Sell' || e.target.innerHTML === 'Cancel Sell') {
+            sellInProgress ? setSellInProgress(false) : setSellInProgress(true);
+        }
+        
     }
 
     const handleConfidenceLevelSave = (e) => {
@@ -54,6 +60,23 @@ export const AssetBought = () => {
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);
         //some action creator that updates state with the new confidence level and thesis values
         dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel}));
+        setUpdateInProgress(false);
+        setSellInProgress(false);
+        setUpdatedConfidenceLevel(5);
+        setUpdatedThesis('');
+        setConfidenceLevelSaved(false);
+        setThesisSaved(false);
+    }
+
+    const handleSell = (e) => {
+        e.preventDefault();
+        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel}));
+        setUpdateInProgress(false);
+        setSellInProgress(false);
+        setUpdatedConfidenceLevel(5);
+        setUpdatedThesis('');
+        setConfidenceLevelSaved(false);
+        setThesisSaved(false);
     }
 
     return (
@@ -61,17 +84,17 @@ export const AssetBought = () => {
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
             <div className={styles.performance}>
                 <AssetTotalChange/>
-                <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
+                <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
                 <AssetTodaysChange/>
                 <AssetDollarValue/>
             </div>
             <div className={styles.descriptions}>
-                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick}/>
+                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick}/>
                 <AssetAIAnalysis/>
             </div>
             <div className={styles.actions}>
-                <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
-                <AssetSell/>
+                <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} sellInProgress={sellInProgress} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
+                <AssetSell handleSell={handleSell} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
             </div>
         </div>
     )
