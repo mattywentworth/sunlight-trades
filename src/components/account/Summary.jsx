@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Summary.module.css';
 import { SummaryCard } from './SummaryCard';
+import { AccountHeader } from './AccountHeader';
 
 export const Summary = () => {
 
@@ -23,7 +24,8 @@ export const Summary = () => {
 
     return (
         <div className={styles.container}>
-            <button className={styles.summaryButton} onClick={modifySummaryView}>{buttonInnerHTML}</button>
+            <AccountHeader/>
+            {/*<button className={styles.summaryButton} onClick={modifySummaryView}>{buttonInnerHTML}</button>*/}
             <div className={display ? styles.buttonBorderHide : styles.buttonBorderShow}></div>
             <div className={display ? styles.subContainerShow : styles.subContainerHide}>
                 <div className={styles.contentContainer}>

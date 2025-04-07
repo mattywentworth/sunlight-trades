@@ -8,7 +8,7 @@ export const Account = () => {
 
     return (
         <div className={styles.container}>
-            <Summary/>
+            {/*<Summary/>*/}
             {/*<AccountHeader/>*/}
             <Outlet/>
         </div>

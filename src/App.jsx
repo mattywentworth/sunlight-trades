@@ -35,6 +35,7 @@ function App() {
           <Route element={<Account/>} path='account/:user'>
             <Route path='overview'>
             {/*<Route element={<Summary/>} path='summary'/>*/}
+              <Route element={<Summary/>} path='summary'/>
               <Route element={<Bought/>} path='bought'/>
               <Route element={<Sold/>} path='sold'/>
               <Route element={<Watched/>} path='watched'/>

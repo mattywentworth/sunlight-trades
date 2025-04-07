@@ -46,7 +46,7 @@ export const accountAssetsSlice = createSlice({
             let nextAssetID = numAssets + 1;
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
-            const {payload: { ticker, companyName, logo, watchBuySell, stockOrOptions, assetQty, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
+            const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
             const addedAsset = {
                 assetId: nextAssetID,
                 dateAdded: dateObject,
@@ -58,7 +58,7 @@ export const accountAssetsSlice = createSlice({
                     {
                     date: dateObject,
                     dateReadable: readableDate,
-                    action: watchBuySell//might need to test this to make sure my edit functions properly
+                    action: watchOrBuy//might need to test this to make sure my edit functions properly
                     }
                 ],
                 stockOrOptions: stockOrOptions,

@@ -13,6 +13,7 @@ import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAccountAssets, updateAsset, sellAsset } from '../../features/assets/accountAssetsSlice';
 import { convertDateToText } from '../../utils/dates';
+import { AccountHeader } from './AccountHeader';
 
 export const AssetBought = () => {
 
@@ -81,6 +82,7 @@ export const AssetBought = () => {
 
     return (
         <div>
+            <AccountHeader/>
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
             <div className={styles.performance}>
                 <AssetTotalChange/>
