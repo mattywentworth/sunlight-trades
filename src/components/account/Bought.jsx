@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './Bought.module.css';
-import { AssetCard } from './AssetCard';
 import { AccountHeader } from './AccountHeader';
-import { testBoughtArray } from '../../utils/testBoughtList';
 import { TableBought } from '../account/TableBought';
 import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
@@ -18,7 +16,7 @@ export const Bought = () => {
     const accountAssets = useSelector(selectAccountAssets);
     let tableContent;
     if (accountAssets.length > 0) {
-        tableContent = <TableBought />;
+        tableContent = <TableBought lastAction='buy'/>;
     } else {
         tableContent = (
             <>

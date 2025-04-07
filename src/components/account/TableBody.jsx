@@ -3,14 +3,14 @@ import { TableRow } from './TableRow';
 import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 
-export const TableBody = () => {
+export const TableBody = ( { lastAction } ) => {
 
     const accountAssets = useSelector(selectAccountAssets);
     const boughtAssets = accountAssets.filter(asset => {
         const actions = asset.watchBuySell;
         const actionsLength = asset.watchBuySell.length;
         const mostRecentAction = actions[actionsLength - 1];
-        return mostRecentAction.action === 'buy';
+        return mostRecentAction.action === lastAction;
     });
 
     let tableContent;
