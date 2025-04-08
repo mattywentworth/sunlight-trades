@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AddAssetSearchResults.module.css'
 import { useSelector } from 'react-redux';
-import { selectSearchResults, selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
+import { selectSearchResults, selectSelectedSearchResult, isPending } from '../../features/add-asset/searchResultsSlice';
 import { AddAssetSearchResultCard } from './AddAssetSearchResultCard';
 
 
@@ -12,7 +12,16 @@ export const AddAssetSearchResults = () => {
     const selectedSearchResult = useSelector(selectSelectedSearchResult);
     // if (searchResults) {alert(searchResults[0].ticker)}
     
-    
+    /*Testing asyncThunk pending status
+    const isLoading = useSelector(isPending);
+    let pendingText;
+    if (isLoading) {
+        pendingText = <p>Search Results are Loading</p>
+        alert('loading');
+    } else {
+        pendingText = <>Search Results have loaded</>
+    }
+    */
     let companySearchResults;
     if (typeof searchResults === 'object') {
         companySearchResults = searchResults.map(element => {
@@ -33,6 +42,7 @@ export const AddAssetSearchResults = () => {
             {/*{searchResults.map(element => {
                 return <div>{element.ticker}</div>;
             })}*/}
+            {/*{pendingText}*/}
             <div className={styles.topDivider}></div>
             <div className={styles.searchResultsContainer}>
                 {companySearchResults}

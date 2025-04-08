@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { useNavigate, useParams } from 'react-router';
 
-export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLevel } ) => {
+export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLevel, ownership } ) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -13,7 +13,7 @@ export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLev
     const user = params.user;
 
     const navToAssetDetails = () => {
-        navigate(`/account/${user}/bought/${assetId}`)
+        navigate(`/account/${user}/${ownership}/${assetId}`)
     }
 
     const accountAssets = useSelector(selectAccountAssets);

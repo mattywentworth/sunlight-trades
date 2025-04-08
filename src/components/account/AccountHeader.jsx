@@ -26,13 +26,14 @@ export const AccountHeader = () => {
 
     let ticker;
     let assetHeader;
+    const ownership = 'bought' || 'sold';
     if (params.assetID) {
         //alert(accountAssets[0].assetId);
         const numdAssetId = Number(params.assetID);
         const currentAsset = accountAssets.find(asset => asset.assetId === numdAssetId);
         //alert(currentAsset);
         ticker = currentAsset.ticker;
-        assetHeader = <NavLink to={`/account/${params.user}/bought/${params.assetID}`} id='test7' style={handleTabClick} className={styles.test}>{ticker}</NavLink>;
+        assetHeader = <NavLink to={`/account/${params.user}/${params.ownership}/${params.assetID}`} id='test7' style={handleTabClick} className={styles.test}>{ticker}</NavLink>;
     }
 
     return (

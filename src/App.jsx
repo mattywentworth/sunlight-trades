@@ -25,6 +25,7 @@ import { Routes, Route } from 'react-router';
 
 function App() {
   //const [count, setCount] = useState(0)
+  const ownership = 'bought' || 'sold';
 
   return (
       <Routes>
@@ -42,7 +43,8 @@ function App() {
               <Route element={<AddAsset/>} path='add-asset' />
               <Route element={<Principles/>} path='principles'/>
             </Route>
-            <Route element={<AssetBought/>} path='bought/:assetID' />
+            <Route element={<AssetBought/>} path=':ownership/:assetID' />
+            {/*<Route element={<AssetBought/>} path='sold/:assetID' />*/}
           </Route>
           <Route element={<PagePlaceholder/>} path='page' />
         </Route>

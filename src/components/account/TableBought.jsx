@@ -7,7 +7,7 @@ import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 
 //Follow table element accessibility guidelines - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table or https://usability.yale.edu/web-accessibility/articles/tables#:~:text=HTML%20tables%20are%20appropriate%20for,%2C%20column%20headers%2C%20or%20both.
 
-export const TableBought = ( { lastAction } ) => {
+export const TableBought = ( { lastAction, ownership } ) => {
 
     const accountAssets = useSelector(selectAccountAssets);
 
@@ -27,7 +27,7 @@ export const TableBought = ( { lastAction } ) => {
                         <th className={styles.companyHeader}>{/*Actions*/}</th>
                     </tr>
                 </thead>
-                <TableBody lastAction={lastAction}/>
+                <TableBody lastAction={lastAction} ownership={ownership}/>
             </table>
         </div>
     )

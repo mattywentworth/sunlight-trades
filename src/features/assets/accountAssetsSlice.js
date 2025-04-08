@@ -1,5 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { convertDateToText } from '../../utils/dates';
+
+const fetchStockPrice = createAsyncThunk('accountAssets',
+    async(ticker, thunkAPI) => {
+        const response = await someAsyncFunc(ticker);
+        return responseOrSomething;
+    }
+);
 
 export const accountAssetsSlice = createSlice({
     name: 'accountAssets',

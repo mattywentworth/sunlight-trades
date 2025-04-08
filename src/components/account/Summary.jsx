@@ -5,7 +5,7 @@ import { AccountHeader } from './AccountHeader';
 
 export const Summary = () => {
 
-    const testArray = ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4'];
+    const testArray = ['Total Account Gain/Loss %', 'Total Account Value', 'Today\'s Gain Loss %', 'Today\'s Gain Loss Value', 'Bought Section and performance', 'Sold Section and performance', 'Watched Section and performance'];
 
     const [buttonInnerHTML, setButtonInnerHTML] = useState('▲ Hide Summary ▲');
     const [display, setDisplay] = useState(true);
@@ -28,6 +28,7 @@ export const Summary = () => {
             {/*<button className={styles.summaryButton} onClick={modifySummaryView}>{buttonInnerHTML}</button>*/}
             <div className={display ? styles.buttonBorderHide : styles.buttonBorderShow}></div>
             <div className={display ? styles.subContainerShow : styles.subContainerHide}>
+                <p>Include things like average confidence of owned assets, meta-analysis of owned thesis, meta-analysis of owned theses vs watched theses, what else?</p>
                 <div className={styles.contentContainer}>
                     {/*<div>This is SUMMARY info</div>
                     <div>More info</div>

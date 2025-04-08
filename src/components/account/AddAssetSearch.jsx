@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/searchTermSlice';
 import { restClient } from '@polygon.io/client-js';
 //Probably need to edit lines below to use createAsyncThunk
-import { updateSearchResults, selectSearchResults, selectSelectedSearchResult, updateSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
+import { updateSearchResults, selectSearchResults, selectSelectedSearchResult, updateSelectedSearchResult, fetchStockSearchResults } from '../../features/add-asset/searchResultsSlice';
 
 
 export const AddAssetSearch = () => {
@@ -35,6 +35,7 @@ export const AddAssetSearch = () => {
     const polygonAPIKey = import.meta.env.VITE_API_KEY_POLYGON;
     const rest = restClient(polygonAPIKey);
     
+    /*First attempt at Polygon API call
     const reqResponse = async (term) => {
         rest.reference.tickers({
             market: "stocks",
@@ -51,7 +52,9 @@ export const AddAssetSearch = () => {
             console.error('An error happened:', e);
         });
     }
+    */
 
+    /*Second attempt at Polygon API call - worked, but it should be in the slice as an asyncThunk
     const testRequest = async (term) => {
         try {
             const response = await rest.reference.tickers({
@@ -67,16 +70,19 @@ export const AddAssetSearch = () => {
             console.log('There wan an error fetching tickers.', error);
         }
     }
+    */
 
     const handleAssetSearchSubmit = async (e) => {
         e.preventDefault();
         if (selectedSearchResult) {
             dispatch(updateSelectedSearchResult(null));
         }
+        /*
         const data = await testRequest(addAssetSearchTerm);
-        //alert(data.results[0].ticker);
         const arrayOfCompanies = data.results;
         dispatch(updateSearchResults(arrayOfCompanies));
+        */
+       dispatch(fetchStockSearchResults(addAssetSearchTerm));
     }
     
     //End Polygon API test
