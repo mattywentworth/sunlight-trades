@@ -1,11 +1,48 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { selectSearchTerm } from './searchTermSlice';
 import { restClient } from '@polygon.io/client-js';
+import twelvedata from 'twelvedata';
 
 //Should I be using createAsyncThunk here???
 //may end up wanting to reference this: https://www.educative.io/courses/get-financial-market-data-with-polygon-api-in-javascript/tickersd
 const polygonAPIKey = import.meta.env.VITE_API_KEY_POLYGON;
 const rest = restClient(polygonAPIKey);
+const twelvedataAPIKey = import.meta.env.VITE_API_KEY_TWELVEDATA;
+
+//
+const config = {
+    key: twelvedataAPIKey,
+};
+
+const client = twelvedata(config);
+
+const params = {
+    symbol: 'AAPL',
+};
+
+/*export const testAPICall = client
+    .price(params)
+    .then(data => {
+        console.log(data);
+    })*/
+
+/*export const testAPICallTwo = client
+    .price(params)
+    .then(data => {
+        console.log(data);
+    })*/
+//
+
+export const fetchTickerPriceWhenAdded = createAsyncThunk('addAssetSearchResults/fetchTickerPriceWhenAdded',
+    async (stockSymbol) => {
+        const response = await client
+            .price(stockSymbol);
+            /*.then(data => {
+                alert(data.price);
+            })*/
+        return response.price;
+    }
+)
 
 export const fetchStockSearchResults = createAsyncThunk('addAssetSearchResults/fetchStockSearchResults',
     async (searchTerm) => {
@@ -45,7 +82,8 @@ export const searchResultsSlice = createSlice({
         searchResults: '',
         isPending: false,
         isRejected: false,
-        selectedSearchResult: null
+        selectedSearchResult: null,
+        priceWhenAssetAdded: null
     },
     reducers : {
         updateSearchResults: (state, action) => {
@@ -74,6 +112,10 @@ export const searchResultsSlice = createSlice({
             addCase(fetchStockSearchResults.rejected, (state, action) => {
                 state.isPending = false;
                 state.isRejected = true;
+            }).
+            addCase(fetchTickerPriceWhenAdded.pending, (state, action) => {}).
+            addCase(fetchTickerPriceWhenAdded.fulfilled, (state, action) => {
+                state.priceWhenAssetAdded = action.payload;
             })
     }
 })

@@ -59,6 +59,7 @@ input[type='radio'] {
 
 .submitButton {
     display: block;
-    color: white;
+    color: black;
+    background-color: green;
     margin: 0 auto;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AddAssetSearchResultCard.module.css';
 import { restClient } from '@polygon.io/client-js';
-import { updateSelectedSearchResult, selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
+import { updateSelectedSearchResult, selectSelectedSearchResult, fetchTickerPriceWhenAdded } from '../../features/add-asset/searchResultsSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
@@ -58,6 +58,7 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
             companyName: name,
             icon: imageUrl //Must add '?apiKey=[insertAPIKey]' to url in order to access the icon
         }));
+        dispatch(fetchTickerPriceWhenAdded({symbol: ticker}));
     }
 
     let shortenedCompanyName;

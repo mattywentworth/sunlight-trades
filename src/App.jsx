@@ -22,6 +22,7 @@ import { AssetBought } from './components/account/AssetBought';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route } from 'react-router';
+//import twelvedata from "https://unpkg.com/twelvedata@latest/dist-esm/twelvedata.js?module"; //Delete from twelvedata?
 
 function App() {
   //const [count, setCount] = useState(0)

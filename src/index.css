@@ -126,7 +126,7 @@ input[type='submit'] {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  /*background-color: green;*/
+  background-color: green;
   cursor: pointer;
   transition: border-color 0.25s;
 }
