@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { useNavigate, useParams } from 'react-router';
 
-export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLevel, ownership } ) => {
+export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, confidenceLevel, ownership } ) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -35,7 +35,7 @@ export const TableRow = ( { assetId, ticker, logo, stockOrOptions, confidenceLev
             <td>-15%</td>
             <td>$350</td>
             <td>-5%</td>
-            <td>$400</td>
+            <td>${costBasis}</td>
             <td>{confidenceLevel.level}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
             <td>
                 <button onClick={navToAssetDetails}>Details</button>{/* Figure out proper usage here - button or Link element? */}

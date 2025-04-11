@@ -115,7 +115,11 @@ export const searchResultsSlice = createSlice({
             }).
             addCase(fetchTickerPriceWhenAdded.pending, (state, action) => {}).
             addCase(fetchTickerPriceWhenAdded.fulfilled, (state, action) => {
-                state.priceWhenAssetAdded = action.payload;
+                //state.priceWhenAssetAdded = action.payload;
+                //const newSelectedAsset = {...state.selectedSearchResult};
+                state.selectedSearchResult.costBasis = action.payload;
+                //return newSelectedAsset.costBasis = action.payload;
+                //alert(state.selectedSearchResult.costBasis);
             })
     }
 })

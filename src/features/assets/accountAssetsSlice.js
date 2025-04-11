@@ -1,12 +1,34 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { convertDateToText } from '../../utils/dates';
+import twelvedata from 'twelvedata';
 
-const fetchStockPrice = createAsyncThunk('accountAssets',
+const twelvedataAPIKey = import.meta.env.VITE_API_KEY_TWELVEDATA;
+
+const config = {
+    key: twelvedataAPIKey,
+};
+
+const client = twelvedata(config);
+
+const params = {
+    symbols: ['AAPL', 'MSFT', 'GOOGL'],
+    methods: ['price']
+};
+
+export const fetchTickerPriceOnAssetTableLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnTableLoad',
+    async (stockSymbol) => {
+        const response = await client
+            .timeSeries(stockSymbol);
+        return response.price;
+    }
+);
+
+/*const fetchStockPrice = createAsyncThunk('accountAssets',
     async(ticker, thunkAPI) => {
         const response = await someAsyncFunc(ticker);
         return responseOrSomething;
     }
-);
+);*/
 
 export const accountAssetsSlice = createSlice({
     name: 'accountAssets',
@@ -27,6 +49,8 @@ export const accountAssetsSlice = createSlice({
             ],
             stockOrOptions: 'stock',
             quantity: 10,
+            costBasis: 201.73,
+            initalValue: 2017.30,
             stopLossYesNo: 'No',
             stopLossPercentage: null,
             takeProfitYesNo: 'No',
@@ -53,7 +77,8 @@ export const accountAssetsSlice = createSlice({
             let nextAssetID = numAssets + 1;
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
-            const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
+            const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
+            const initialValue = assetQty * costBasis;
             const addedAsset = {
                 assetId: nextAssetID,
                 dateAdded: dateObject,
@@ -70,6 +95,14 @@ export const accountAssetsSlice = createSlice({
                 ],
                 stockOrOptions: stockOrOptions,
                 quantity: assetQty,
+                costBasis: costBasis,
+                initialValue: initialValue,
+                todaysValues: {
+                    open: 'someValue',
+                    current: 'someValue',
+                    dollarChange: 'someValue',
+                    percentChange: 'someValue'
+                },
                 stopLossYesNo: stopLossYesNo,
                 stopLossPercentage: stopLossPercentage,
                 takeProfitYesNo: takeProfitYesNo,
@@ -124,7 +157,7 @@ export const accountAssetsSlice = createSlice({
             };
         },
         sellAsset: (state, action) => {
-            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel }} = action;
+            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel, nextAction }} = action;
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
             const numdAssetIDParam = Number(assetIDParam);
@@ -136,7 +169,7 @@ export const accountAssetsSlice = createSlice({
                 newStateArray[indexToUpdate].watchBuySell.push({
                     date: dateObject,
                     dateReadable: readableDate,
-                    action: 'sell'
+                    action: nextAction
                 })
                 newStateArray[indexToUpdate].thesis.push({
                     dateAdded: dateObject,
@@ -153,6 +186,14 @@ export const accountAssetsSlice = createSlice({
             };
 
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchTickerPriceOnAssetTableLoad.pending, (state, action) => {})
+            .addCase(fetchTickerPriceOnAssetTableLoad.fulfilled, (state, action) => {
+                //alert(action.payload);
+
+            })
     }
 })
 

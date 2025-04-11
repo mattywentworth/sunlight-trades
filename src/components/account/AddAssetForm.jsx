@@ -11,7 +11,7 @@ import { InputGroupConfidence } from './InputGroupConfidence';
 import { InputGroupThesis } from './InputGroupThesis';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
-import { addAssetToAccount, selectAccountAssets } from '../../features/assets/accountAssetsSlice';
+import { addAssetToAccount, selectAccountAssets, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
 import { useParams, useNavigate } from 'react-router';
 
 
@@ -43,7 +43,9 @@ export const AddAssetForm = () => {
         const ticker = selectedSearchResult.ticker;
         const companyName = selectedSearchResult.companyName;
         const logo = selectedSearchResult.icon;
-        dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis}))
+        const costBasis = selectedSearchResult.costBasis;
+        alert(costBasis);
+        dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis}))
         /*const numAssets = accountAssets.length;
         const nextID = numAssets + 1;
         dispatch(addAssetToAccount({
@@ -82,6 +84,14 @@ export const AddAssetForm = () => {
             alert('Unrecognized Request');
         }
     }
+
+    const paramsTest = {
+        symbol: 'AAPL',
+        interval: '1day'
+        }
+    
+    //dispatch(fetchTickerPriceOnAssetTableLoad(paramsTest));
+    
 
     //radio elements below aren't allowing changes. seems like i'm using the 'checked' attribute incorrectly
     return (

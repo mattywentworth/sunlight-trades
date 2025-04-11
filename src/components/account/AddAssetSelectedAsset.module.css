@@ -1,5 +1,5 @@
 .container {
-    background-color: var(--color-bg-section-dark);
+    background-color: var(--color-bg-section-dark-tertiary);
     width: 100%;
     margin: 0.5rem 0 0 0;
     padding: 0.5rem 3rem;
@@ -21,7 +21,10 @@
     border: 2px solid green;
 }*/
 
-
+.logo {
+    width: 4rem;
+    margin: 0 1.5rem 0 0;
+}
 
 .remove {
     width: 250px;

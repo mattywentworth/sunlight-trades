@@ -22,6 +22,9 @@ export const AssetBought = () => {
     const accountAssets = useSelector(selectAccountAssets);
     const currentAsset = accountAssets.find(asset => asset.assetId === assetIDParam);
     const {ticker, companyName, confidenceLevel, thesis, logo} = currentAsset;
+    const assetActions = currentAsset.watchBuySell;
+    const length = assetActions.length;
+    const mostRecentAction = assetActions[length - 1].action;
 
     const [updateInProgress, setUpdateInProgress] = useState(false); //This is the overarching state value that determines what elements are expose and what eleigible actions are
     const [updatedConfidenceLevel, setUpdatedConfidenceLevel] = useState(5);
@@ -29,6 +32,16 @@ export const AssetBought = () => {
     const [confidenceLevelSaved, setConfidenceLevelSaved] = useState(false);
     const [thesisSaved, setThesisSaved] = useState(false);
     const [sellInProgress, setSellInProgress] = useState(false);
+
+
+    let nextAction;
+    if (mostRecentAction === 'watch') {
+        nextAction = 'buy';
+    } else if (mostRecentAction === 'buy') {
+        nextAction = 'sell';
+    } else if (mostRecentAction === 'sell') {
+        nextAction = 'buy';
+    };
 
     const handleUpdateClick = (e) => {
         e.preventDefault();
@@ -71,7 +84,7 @@ export const AssetBought = () => {
 
     const handleSell = (e) => {
         e.preventDefault();
-        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel}));
+        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, nextAction}));
         setUpdateInProgress(false);
         setSellInProgress(false);
         setUpdatedConfidenceLevel(5);
