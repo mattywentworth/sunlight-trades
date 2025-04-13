@@ -17,7 +17,7 @@ export const Sold = () => {
     const accountAssets = useSelector(selectAccountAssets);
     let tableContent;
     if (accountAssets.length > 0) {
-        tableContent = <TableBought lastAction='sell' ownership='sold'/>;
+        tableContent = <TableBought lastAction='Sell' ownership='sold'/>;
     } else {
         tableContent = (
             <>

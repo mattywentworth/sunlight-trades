@@ -7,8 +7,8 @@ export const AssetTotalChange = () => {
     //conditionally style the border of this element or some other element based on whether it's a current loss (red) or gain (green)?
     return (
         <div className={styles.container}>
-            <div>Total Gain/Loss</div>
-            <div>15%</div>
+            <h3>Total Gain/Loss</h3>
+            <p>15%</p>
         </div>
     )
 }

@@ -40,7 +40,12 @@ export const fetchTickerPriceWhenAdded = createAsyncThunk('addAssetSearchResults
             /*.then(data => {
                 alert(data.price);
             })*/
-        return response.price;
+        //return response.price;
+        const price = Number(response.price);
+        //alert(typeof price);
+        const roundedPrice = price.toFixed(2);
+        const numdRoundedPrice = Number(roundedPrice);
+        return numdRoundedPrice;
     }
 )
 

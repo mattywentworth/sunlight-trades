@@ -27,7 +27,7 @@ export const TableBought = ( { lastAction, ownership } ) => {
                         <th className={styles.companyHeader}>{/*Actions*/}</th>
                     </tr>
                 </thead>
-                <TableBody lastAction={lastAction} ownership={ownership}/>
+                <TableBody lastAction={lastAction} ownership={ownership} />
             </table>
         </div>
     )

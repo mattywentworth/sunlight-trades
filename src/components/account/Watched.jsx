@@ -14,7 +14,7 @@ export const Watched = () => {
     const accountAssets = useSelector(selectAccountAssets);
     let tableContent;
     if (accountAssets.length > 0) {
-        tableContent = <TableBought lastAction='watch' ownership='watched'/>;
+        tableContent = <TableBought lastAction='Watch' ownership='watched'/>;
     } else {
         tableContent = (
             <>

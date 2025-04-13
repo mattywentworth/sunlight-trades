@@ -15,13 +15,22 @@ const params = {
     methods: ['price']
 };
 
-export const fetchTickerPriceOnAssetTableLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnTableLoad',
+export const fetchTickerPriceOnAssetTableLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnAssetTableLoad',
     async (stockSymbol) => {
         const response = await client
             .timeSeries(stockSymbol);
-        return response.price;
+        return response.values;//need to filter this down more
     }
 );
+
+/*const testFunc = async () => {
+    try {
+        const response = fetch('https://api.twelvedata.com/time_series?symbol=AAPL&interval=1min&apikey=d694183c91ba4dd49a49c85d10021f81');
+        console.log(response);
+    } catch {
+        console.log('error');
+    }
+};*/
 
 /*const fetchStockPrice = createAsyncThunk('accountAssets',
     async(ticker, thunkAPI) => {
@@ -44,13 +53,13 @@ export const accountAssetsSlice = createSlice({
                 {
                     date: 'updateThis',
                     dateReadable: 'Apr 6, 2025',
-                    action: 'buy'
+                    action: 'Buy'
                 }
             ],
             stockOrOptions: 'stock',
             quantity: 10,
             costBasis: 201.73,
-            initalValue: 2017.30,
+            initialValue: 2017.30,
             stopLossYesNo: 'No',
             stopLossPercentage: null,
             takeProfitYesNo: 'No',
@@ -79,6 +88,7 @@ export const accountAssetsSlice = createSlice({
             const readableDate = convertDateToText(dateObject);
             const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
             const initialValue = assetQty * costBasis;
+            const roundedInitialValue = Number(initialValue.toFixed(2));
             const addedAsset = {
                 assetId: nextAssetID,
                 dateAdded: dateObject,
@@ -96,7 +106,7 @@ export const accountAssetsSlice = createSlice({
                 stockOrOptions: stockOrOptions,
                 quantity: assetQty,
                 costBasis: costBasis,
-                initialValue: initialValue,
+                initialValue: roundedInitialValue,
                 todaysValues: {
                     open: 'someValue',
                     current: 'someValue',
@@ -152,6 +162,11 @@ export const accountAssetsSlice = createSlice({
                     dateAddedReadable: readableDate,
                     level: updatedConfidenceLevel
                 })
+                /*newStateArray[indexToUpdate].watchBuySell.push({
+                    date: dateObject,
+                    dateReadable: readableDate,
+                    action: 'Update'
+                })*/
             } else {
                 alert('Error: could not find requested asset.');
             };
@@ -187,12 +202,17 @@ export const accountAssetsSlice = createSlice({
 
         }
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) => { //Given how heavy this is on API calls, this should only be called once per day on the weekend
         builder
-            .addCase(fetchTickerPriceOnAssetTableLoad.pending, (state, action) => {})
+            .addCase(fetchTickerPriceOnAssetTableLoad.pending, (state, action) => {
+                alert('pending');
+            })
             .addCase(fetchTickerPriceOnAssetTableLoad.fulfilled, (state, action) => {
-                //alert(action.payload);
+                alert(action.payload[0].close);
 
+            })
+            .addCase(fetchTickerPriceOnAssetTableLoad.rejected, (state, action) => {
+                alert('rejected');
             })
     }
 })

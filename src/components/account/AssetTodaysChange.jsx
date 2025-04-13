@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './AssetTotalChange.module.css';
 
 export const AssetTodaysChange = () => {
 
+    const [marketOpenToday, setMarketOpenToday] = useState(true);
+    
+    const todaysDate = new Date();
+    const dayOfWeek = todaysDate.getDay();
+    let content;
+    if (dayOfWeek === 6 || dayOfWeek === 0) {
+        content = <p>The market is not open today</p>
+    } else {
+        content = <p>1.5%</p>
+    }
+
     return (
         <div className={styles.container}>
-            <div>Today's Gain/Loss</div>
-            <div>1.5%</div>
+            <h3>Today's Gain/Loss</h3>
+            {content}
         </div>
     )
 }

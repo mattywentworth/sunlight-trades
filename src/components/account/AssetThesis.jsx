@@ -4,7 +4,7 @@ import { AssetThesisUpdateInput } from './AssetThesisUpdateInput';
 import { AssetThesisCard } from './AssetThesisCard';
 import { convertDateToText } from '../../utils/dates';
 
-export const AssetThesis = ( { thesis, updateInProgress, sellInProgress, updatedThesis, setUpdatedThesis, thesisSaved, setThesisSaved, confidenceLevel, handleThesisSave, handleUpdateClick } ) => {
+export const AssetThesis = ( { thesis, updateInProgress, sellInProgress, updatedThesis, setUpdatedThesis, thesisSaved, setThesisSaved, confidenceLevel, handleThesisSave, handleUpdateClick, action } ) => {
 
     const initialThesis = thesis[0].thesis;
 
@@ -23,7 +23,7 @@ export const AssetThesis = ( { thesis, updateInProgress, sellInProgress, updated
             {/* AssetThesisCard will get .map'd */}
             {thesis.map((thesisElement, index) => {
                 //alert(index);
-                return <AssetThesisCard thesisDate={thesisElement.dateAddedReadable} thesisText={thesisElement.thesis} confidence={confidenceLevel[index]} />
+                return <AssetThesisCard thesisDate={thesisElement.dateAddedReadable} thesisText={thesisElement.thesis} confidence={confidenceLevel[index]}/> 
             })}
             {/*<AssetThesisCard thesisDate={thesis[0].dateAddedReadable} thesisText={thesis[0].thesis} />*/}
         </div>

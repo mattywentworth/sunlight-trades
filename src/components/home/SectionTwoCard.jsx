@@ -8,8 +8,10 @@ export const SectionTwoCard = ( {textTitle, textText} ) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.title}>{contentTitle}</div>
-            <div>{contentText}</div>
+            <div className={styles.subContainer}>
+                <div className={styles.title}>{contentTitle}</div>
+                <div>{contentText}</div>
+            </div>
         </div>
     )
 }

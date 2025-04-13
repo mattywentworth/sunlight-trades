@@ -1,7 +1,8 @@
 .container {
-    background-color: goldenrod;
-    color: black;
-    padding: 2rem 6rem;
+    /*background-color: goldenrod;*/
+    background-image: radial-gradient(ellipse at bottom, #4f2906, black);
+    color: white;
+    padding: 4rem 6rem;
     text-align: center;
 }
 

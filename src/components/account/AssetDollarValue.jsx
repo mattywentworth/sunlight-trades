@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from './AssetDollarValue.module.css';
 
-export const AssetDollarValue = () => {
+export const AssetDollarValue = ( { costBasis } ) => {
 
     return (
         <div className={styles.container}>
             <div>
-                <div>Current Price</div>
-                <div>$110</div>
+                <h3 className={styles.header}>Current Price</h3>
+                <p>$110</p>
             </div>
             <div>
-                <div>Cost Basis</div>
-                <div>$109</div>
+                <h3 className={styles.header}>Cost Basis</h3>
+                <p>${costBasis}</p>
             </div>
         </div>
     )

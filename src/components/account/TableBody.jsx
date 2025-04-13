@@ -18,7 +18,7 @@ export const TableBody = ( { lastAction, ownership } ) => {
         tableContent = boughtAssets.map(asset => {
             const numConfidenceLevels = asset.confidenceLevel.length;
             const mostRecentConfidenceLevel = asset.confidenceLevel[numConfidenceLevels - 1];
-            return <TableRow key={asset.assetId} assetId={asset.assetId} ticker={asset.ticker} logo={asset.logo} stockOrOptions={asset.stockOrOptions} costBasis={asset.costBasis} confidenceLevel={mostRecentConfidenceLevel} ownership={ownership}/>;
+            return <TableRow key={asset.assetId} assetId={asset.assetId} ticker={asset.ticker} logo={asset.logo} stockOrOptions={asset.stockOrOptions} costBasis={asset.costBasis} confidenceLevel={mostRecentConfidenceLevel} ownership={ownership} initialValue={asset.initialValue}/>;
         })
     } else {
         <td>Add an asset in your account in order to display them here.</td>

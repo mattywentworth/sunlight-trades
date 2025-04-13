@@ -11,9 +11,10 @@ import { AssetSell } from './AssetSell';
 import { AssetUpdate } from './AssetUpdate';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAccountAssets, updateAsset, sellAsset } from '../../features/assets/accountAssetsSlice';
+import { selectAccountAssets, updateAsset, sellAsset, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
 import { convertDateToText } from '../../utils/dates';
 import { AccountHeader } from './AccountHeader';
+import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice';
 
 export const AssetBought = () => {
 
@@ -21,7 +22,7 @@ export const AssetBought = () => {
     const assetIDParam = parseInt(params.assetID);
     const accountAssets = useSelector(selectAccountAssets);
     const currentAsset = accountAssets.find(asset => asset.assetId === assetIDParam);
-    const {ticker, companyName, confidenceLevel, thesis, logo} = currentAsset;
+    const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, watchBuySell} = currentAsset;
     const assetActions = currentAsset.watchBuySell;
     const length = assetActions.length;
     const mostRecentAction = assetActions[length - 1].action;
@@ -35,19 +36,25 @@ export const AssetBought = () => {
 
 
     let nextAction;
-    if (mostRecentAction === 'watch') {
-        nextAction = 'buy';
-    } else if (mostRecentAction === 'buy') {
-        nextAction = 'sell';
-    } else if (mostRecentAction === 'sell') {
-        nextAction = 'buy';
+    if (mostRecentAction === 'Watch') {
+        nextAction = 'Buy';
+    } else if (mostRecentAction === 'Buy') {
+        nextAction = 'Sell';
+    } else if (mostRecentAction === 'Sell') {
+        nextAction = 'Buy';
     };
+
+    const holdAction = 'Hold';
 
     const handleUpdateClick = (e) => {
         e.preventDefault();
         if (e.target.innerHTML === 'Update' || e.target.innerHTML === 'Cancel Update') {
             updateInProgress ? setUpdateInProgress(false) : setUpdateInProgress(true);
         } else if (e.target.innerHTML === 'Sell' || e.target.innerHTML === 'Cancel Sell') {
+            sellInProgress ? setSellInProgress(false) : setSellInProgress(true);
+        } else if (e.target.innerHTML === 'Cancel') {
+            updateInProgress ? setUpdateInProgress(false) : setUpdateInProgress(true);
+        } else if (e.target.innerHTML === 'Buy' || e.target.innerHTML === 'Cancel Buy') {
             sellInProgress ? setSellInProgress(false) : setSellInProgress(true);
         }
         
@@ -65,7 +72,8 @@ export const AssetBought = () => {
         e.preventDefault();
         const thesisUpdateInput = document.getElementById('thesis-update');
         thesisSaved ? setThesisSaved(false) : setThesisSaved(true);
-        thesisUpdateInput.disabled === false ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
+        thesisSaved ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
+        //thesisUpdateInput.disabled === false ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
     }
 
     const dispatch = useDispatch();
@@ -80,6 +88,10 @@ export const AssetBought = () => {
         setUpdatedThesis('');
         setConfidenceLevelSaved(false);
         setThesisSaved(false);
+        const thesisUpdateInput = document.getElementById('thesis-update');
+        thesisUpdateInput.disabled = false;
+        const confidenceLevelUpdateInput = document.getElementById('confidence-level-update');
+        confidenceLevelUpdateInput.disabled = false;
     }
 
     const handleSell = (e) => {
@@ -91,25 +103,35 @@ export const AssetBought = () => {
         setUpdatedThesis('');
         setConfidenceLevelSaved(false);
         setThesisSaved(false);
+        const thesisUpdateInput = document.getElementById('thesis-update');
+        thesisUpdateInput.disabled = false;
+        const confidenceLevelUpdateInput = document.getElementById('confidence-level-update');
+        confidenceLevelUpdateInput.disabled = false;
+    }
+
+    const testChatGPT = (e) => {
+        e.preventDefault();
+        dispatch(generateAIAnalysis());
     }
 
     return (
         <div>
+            <button onClick={testChatGPT}>CHATGPT TEST</button>
             <AccountHeader/>
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
             <div className={styles.performance}>
                 <AssetTotalChange/>
                 <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
                 <AssetTodaysChange/>
-                <AssetDollarValue/>
+                <AssetDollarValue costBasis={costBasis}/>
             </div>
             <div className={styles.descriptions}>
-                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick}/>
+                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick} action={watchBuySell}/>
                 <AssetAIAnalysis/>
             </div>
             <div className={styles.actions}>
                 <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} sellInProgress={sellInProgress} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
-                <AssetSell handleSell={handleSell} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
+                <AssetSell handleSell={handleSell} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress} nextAction={nextAction}/>
             </div>
         </div>
     )

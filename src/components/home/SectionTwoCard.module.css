@@ -1,11 +1,23 @@
 .container {
-    background-color:firebrick;
+    /*background-color:firebrick;*/
+    background-image: linear-gradient(45deg, var(--color-red), orange);
     color: white;
     width: 20%;
     text-align: center;
     margin: 1rem;
-    padding: 0.6rem;
-    border-radius: 20px;
+    padding: 0.1rem;
+    transition: background-image 5s;
+    /*border-radius: 20px;*/
+}
+
+.container:hover {
+    background-image: linear-gradient(45deg, var(--color-yellow), green);
+
+}
+
+.subContainer {
+    background-color: black;
+    padding: 0.75rem;
 }
 
 .title {

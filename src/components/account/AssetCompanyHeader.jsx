@@ -5,7 +5,7 @@ export const AssetCompanyHeader = ( { ticker, companyName, logo } ) => {
 
     return (
         <div className={styles.container}>
-            <img className={styles.rowImage} src={logo} alt='placeholder alt text'/>
+            <img className={styles.rowImage} src={logo} alt={`Logo for ${companyName}`}/>
             <div>
                 <div>{ticker}</div>
                 <div>{companyName}</div>

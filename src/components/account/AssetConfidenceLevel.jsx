@@ -22,12 +22,12 @@ export const AssetConfidenceLevel = ( { confidenceLevel, updateInProgress, sellI
             <AssetConfidenceLevelUpdateInput updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
             <div className={styles.ratingContainer}>
                 <div>
-                    <div>Current</div>
-                    <div>{mostRecentConfidenceLevel}/10</div>
+                    <h3>Current</h3>
+                    <p>{mostRecentConfidenceLevel}/10</p>
                 </div>
                 <div>
-                    <div>Initial</div>
-                    <div>{initialConfidenceLevel}/10</div>
+                    <h3>Initial</h3>
+                    <p>{initialConfidenceLevel}/10</p>
                 </div>
             </div>
         </div>

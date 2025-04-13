@@ -1,12 +1,16 @@
 .container {
     width: 100%;
     padding: 2rem 4rem;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 .header {
     font-size: 2rem;
+    margin-left: 2rem;
+}
+
+.subHeader {
     margin-left: 2rem;
 }
 

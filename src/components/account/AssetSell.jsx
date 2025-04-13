@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './AssetSell.module.css'
 
-export const AssetSell = ( { handleSell, sellInProgress, handleUpdateClick, thesisSaved, confidenceLevelSaved, updateInProgress } ) => {
+export const AssetSell = ( { handleSell, sellInProgress, handleUpdateClick, thesisSaved, confidenceLevelSaved, updateInProgress, nextAction } ) => {
 
     let buttonText;
     if (sellInProgress) {
-        buttonText = 'Cancel Sell';
+        buttonText = `Cancel ${nextAction}`;
     } else {
-        buttonText = 'Sell';
+        buttonText = `${nextAction}`;
     }
 
     const completeSellButton = document.getElementById('complete-sell-button');
@@ -20,7 +20,7 @@ export const AssetSell = ( { handleSell, sellInProgress, handleUpdateClick, thes
     return (
         <>
             <button className={styles.sellButton} onClick={handleUpdateClick}>{buttonText}</button>
-            <button id='complete-sell-button' onClick={handleSell} className={sellInProgress ? styles.completeSellButtonShow : styles.completeSellButtonHide}>Complete Sell</button>
+            <button id='complete-sell-button' onClick={handleSell} className={sellInProgress ? styles.completeSellButtonShow : styles.completeSellButtonHide}>Complete {nextAction}</button>
         </>
     )
 }
