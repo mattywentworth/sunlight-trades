@@ -15,6 +15,8 @@ import { selectAccountAssets, updateAsset, sellAsset, fetchTickerPriceOnAssetTab
 import { convertDateToText } from '../../utils/dates';
 import { AccountHeader } from './AccountHeader';
 import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice';
+//for testing
+import OpenAI from 'openai';
 
 export const AssetBought = () => {
 
@@ -22,7 +24,7 @@ export const AssetBought = () => {
     const assetIDParam = parseInt(params.assetID);
     const accountAssets = useSelector(selectAccountAssets);
     const currentAsset = accountAssets.find(asset => asset.assetId === assetIDParam);
-    const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, watchBuySell} = currentAsset;
+    const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, watchBuySell, aiAnalysis} = currentAsset;
     const assetActions = currentAsset.watchBuySell;
     const length = assetActions.length;
     const mostRecentAction = assetActions[length - 1].action;
@@ -76,12 +78,31 @@ export const AssetBought = () => {
         //thesisUpdateInput.disabled === false ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
     }
 
+    const openAIApiKey = import.meta.env.VITE_OPEN_AI_API_KEY;
+    const client = new OpenAI( { apiKey: openAIApiKey, dangerouslyAllowBrowser: true});
+
+    const testChatGPTTwo = async (e) => {
+        try {
+            const response = await client.responses.create({
+                model: "gpt-4o",
+                input: "Tell me a three sentence bedtime story about a unicorn."
+            });
+            //alert(Object.keys(response));
+            return response.output[0].content[0].text;
+        } catch (error) {
+            return error;
+        }
+    }
+
     const dispatch = useDispatch();
-    const handleSubmitUpdate = (e) => {
+    const handleSubmitUpdate = async (e) => {
         e.preventDefault();
+        //ChatGPT test
+        const aiAnalysis = await testChatGPTTwo();
+        //
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);
         //some action creator that updates state with the new confidence level and thesis values
-        dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel}));
+        dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis}));
         setUpdateInProgress(false);
         setSellInProgress(false);
         setUpdatedConfidenceLevel(5);
@@ -93,6 +114,7 @@ export const AssetBought = () => {
         const confidenceLevelUpdateInput = document.getElementById('confidence-level-update');
         confidenceLevelUpdateInput.disabled = false;
     }
+
 
     const handleSell = (e) => {
         e.preventDefault();
@@ -109,6 +131,14 @@ export const AssetBought = () => {
         confidenceLevelUpdateInput.disabled = false;
     }
 
+
+    //For testing
+
+    //const openAIApiKey = import.meta.env.VITE_OPEN_AI_API_KEY;
+    //const client = new OpenAI( { apiKey: openAIApiKey, dangerouslyAllowBrowser: true});
+    
+
+
     const testChatGPT = (e) => {
         e.preventDefault();
         dispatch(generateAIAnalysis());
@@ -116,7 +146,7 @@ export const AssetBought = () => {
 
     return (
         <div>
-            <button onClick={testChatGPT}>CHATGPT TEST</button>
+            {/*<button onClick={testChatGPTTwo}>CHATGPT TEST</button>*/}
             <AccountHeader/>
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
             <div className={styles.performance}>
@@ -127,7 +157,7 @@ export const AssetBought = () => {
             </div>
             <div className={styles.descriptions}>
                 <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick} action={watchBuySell}/>
-                <AssetAIAnalysis/>
+                <AssetAIAnalysis aiAnalysis={aiAnalysis} confidenceLevel={confidenceLevel}/>
             </div>
             <div className={styles.actions}>
                 <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} sellInProgress={sellInProgress} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>

@@ -77,6 +77,13 @@ export const accountAssetsSlice = createSlice({
                     dateAddedReadable: 'Apr 6, 2025',
                     thesis: 'This is an initial thesis, which is poorly thought out and must be updated sometime soon.'
                 }
+            ],
+            aiAnalysis: [
+                {
+                    dateAdded: 'updateThis',
+                    dateAddedReadable: 'Apr 6, 2025',
+                    aiAnalysis: "This is an initial analysis of the initial thesis, which might be longer than the actual thesis, so it's possible that I should rethink how to style these sections, depending on what happens with the length."
+                }
             ]           
         }
     ],
@@ -130,7 +137,14 @@ export const accountAssetsSlice = createSlice({
                         dateAddedReadable: readableDate,
                         thesis: thesis
                     }
-                ]
+                ],
+                aiAnalysis: [
+                    {
+                        dateAdded: dateObject,
+                        dateAddedReadable: readableDate,
+                        aiAnalysis: "This is an initial analysis of the initial thesis, which might be longer than the actual thesis, so it's possible that I should rethink how to style these sections, depending on what happens with the length."
+                    }
+                ]  
             };
             return [...state, addedAsset];
             /*Original state code for action:
@@ -140,7 +154,7 @@ export const accountAssetsSlice = createSlice({
         updateAsset: (state, action) => {
             //const updatedThesis = action.payload.updatedThesis;
             //alert(action.payload.updatedThesis);
-            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel }} = action;
+            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis }} = action;
             //alert(updatedThesis);
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
@@ -161,6 +175,11 @@ export const accountAssetsSlice = createSlice({
                     dateAdded: dateObject,
                     dateAddedReadable: readableDate,
                     level: updatedConfidenceLevel
+                })
+                newStateArray[indexToUpdate].aiAnalysis.push({
+                    dateAdded: dateObject,
+                    dateAddedReadable: readableDate,
+                    aiAnalysis: aiAnalysis
                 })
                 /*newStateArray[indexToUpdate].watchBuySell.push({
                     date: dateObject,

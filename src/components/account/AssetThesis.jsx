@@ -14,7 +14,7 @@ export const AssetThesis = ( { thesis, updateInProgress, sellInProgress, updated
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.headerSides}></div>
-                <h3>Thesis</h3>
+                <h3>Asset Thesis</h3>
                 <div className={styles.headerSides}>
                     <button className={styles.update} onClick={handleUpdateClick}>Update</button>
                 </div>

@@ -6,24 +6,39 @@ import OpenAI from 'openai';
 
 const openAIApiKey = import.meta.env.VITE_OPEN_AI_API_KEY;
 const client = new OpenAI( { apiKey: openAIApiKey, dangerouslyAllowBrowser: true});
+//for testing
+/*const response = await client.responses.create({
+    model: "gpt-4o",
+    input: "Tell me a three sentence bedtime story about a unicorn."
+});*/
+//
+/*  const response = await client.responses.create({
+        model: "gpt-4o",
+        input: "Tell me a three sentence bedtime story about a unicorn."
+    });
+    //alert(Object.keys(response));
+    alert(response.output[0].content[0].text)
+*/
 
 export const generateAIAnalysis = createAsyncThunk(
     'singleAIAnalysis/generateAIAnalysis',
     async () => {
-        alert('function is firing')
+        //alert(testMessage)
         const response = await client.responses.create({
-            model: 'gpt-4o',
-            input: "Please tell me a dark joke that includes a twist I won't see coming"
+            model: "gpt-4o",
+            input: "Tell me a three sentence bedtime story about a unicorn."
         });
-        return response;
+        return response;//.output[0].content[0].text;
     }
 )
+
 
 export const singleAIAnalysisSlice = createSlice({
     name: 'singleAIAnalysis',
     initialState: '',
     reducers : {
-        placeholder: (state, action) => {
+        addThesisToAsset: (state, action) => {//I was trying to use this slice to update another slice, which I probably shouldn't do
+            //const currentAsset = selectAccountAssets.find(asset => )
             return state = action.payload;
         }
     },
@@ -33,10 +48,14 @@ export const singleAIAnalysisSlice = createSlice({
                 alert('pending');
             })
             .addCase(generateAIAnalysis.fulfilled, (state, action) => {
-                alert(action.payload);
+                //alert('trying to succeed');
+                //alert(Object.keys(action.payload));
+                return action.payload;
+                
             })
             .addCase(generateAIAnalysis.rejected, (state, action) => {
                 alert('rejected');
+                console.log(action.error);
             })
     }
 })
