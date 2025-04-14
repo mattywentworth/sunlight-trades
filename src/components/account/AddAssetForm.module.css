@@ -19,7 +19,7 @@
 }
 
 .formColumn {
-    width: 30%;
+    width: 50%;
     margin-right: 2rem;
 }
 
@@ -32,6 +32,22 @@
     background-color:#2E2E2E;
     /*border-radius: 10px;*/
     padding: 1rem;
+}
+
+.inputSectionViolation {
+    margin: 2rem;
+    background-color:#2E2E2E;
+    border: 1px solid darkred;
+    /*border-radius: 10px;*/
+    padding: 1rem;
+}
+
+.stopTakeHide {
+    display: none;
+}
+
+.stopTakeShow {
+    display: default;
 }
 
 input[type='radio'] {

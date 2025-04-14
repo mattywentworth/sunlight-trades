@@ -17,15 +17,16 @@ import { useParams, useNavigate } from 'react-router';
 
 export const AddAssetForm = () => {
 
-    const [watchOrBuy, setWatchOrBuy] = useState('buy');
+    const [watchOrBuy, setWatchOrBuy] = useState('Buy');
     const [stockOrOptions, setStockOrOptions] = useState('stock');
     const [assetQty, setAssetQty] = useState(null);
-    const [stopLossYesNo, setStopLossYesNo] = useState('no');
-    const [stopLossPercentage, setStopLossPercentage] = useState(null);
-    const [takeProfitYesNo, setTakeProfitYesNo] = useState(null);
-    const [takeProfitPercentage, setTakeProfitPercentage] = useState(null);
+    const [stopLossYesNo, setStopLossYesNo] = useState('No');
+    const [stopLossPercentage, setStopLossPercentage] = useState(0);
+    const [takeProfitYesNo, setTakeProfitYesNo] = useState('No');
+    const [takeProfitPercentage, setTakeProfitPercentage] = useState(0);
     const [confidenceLevel, setConfidenceLevel] = useState(5);
     const [thesis, setThesis] = useState('');
+    const [thesisLength, setThesisLength] = useState(0);
 
 
     
@@ -76,9 +77,9 @@ export const AddAssetForm = () => {
             ]
         }));*/
         const user = params.user;
-        if (watchOrBuy === 'buy') {
+        if (watchOrBuy === 'Buy') {
             navigate(`/account/${user}/overview/bought`);
-        } else if (watchOrBuy === 'watch') {
+        } else if (watchOrBuy === 'Watch') {
             navigate(`/account/${user}/overview/watched`);
         } else {
             alert('Unrecognized Request');
@@ -103,15 +104,17 @@ export const AddAssetForm = () => {
                         <InputGroupWatchOrBuy watchOrBuy={watchOrBuy} setWatchOrBuy={setWatchOrBuy}/>
                         <InputGroupStockOrOptions watchOrBuy={watchOrBuy} stockOrOptions={stockOrOptions} setStockOrOptions={setStockOrOptions}/>
                         <InputGroupQty stockOrOptions={stockOrOptions} assetQty={assetQty} setAssetQty={setAssetQty}/>
+                        <InputGroupStopLoss stopLossYesNo={stopLossYesNo} setStopLossYesNo={setStopLossYesNo}/>
+                        <InputGroupTakeProfit takeProfitYesNo={takeProfitYesNo} setTakeProfitYesNo={setTakeProfitYesNo}/>
                     </div>
-                    <div className={styles.formColumn}>
+                    {/*<div className={styles.formColumn}>
                         <InputGroupStopLoss stopLossYesNo={stopLossYesNo} setStopLossYesNo={setStopLossYesNo}/>
                         <InputGroupTakeProfit takeProfitYesNo={takeProfitYesNo} setTakeProfitYesNo={setTakeProfitYesNo}/>
                         <InputGroupTimeHorizon/>
-                    </div>
+                    </div>*/}
                     <div className={styles.formColumn}>
                         <InputGroupConfidence confidenceLevel={confidenceLevel} setConfidenceLevel={setConfidenceLevel}/>
-                        <InputGroupThesis thesis={thesis} setThesis={setThesis}/>
+                        <InputGroupThesis thesis={thesis} setThesis={setThesis} thesisLength={thesisLength} setThesisLength={setThesisLength}/>
                     </div>
                 </div>
                 <div className={styles.submitContainer}>
