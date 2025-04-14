@@ -35,6 +35,7 @@ export const AssetBought = () => {
     const [confidenceLevelSaved, setConfidenceLevelSaved] = useState(false);
     const [thesisSaved, setThesisSaved] = useState(false);
     const [sellInProgress, setSellInProgress] = useState(false);
+    const [chatGPTPending, setChatGPTPending] = useState(false);
 
 
     let nextAction;
@@ -97,9 +98,15 @@ export const AssetBought = () => {
     const dispatch = useDispatch();
     const handleSubmitUpdate = async (e) => {
         e.preventDefault();
+        //Pending workaround Part 1
+        setChatGPTPending(true);
+        //End Pending workaround Part 1
         //ChatGPT test
         const aiAnalysis = await testChatGPTTwo();
         //
+        //Pending workaround Part 2
+        setChatGPTPending(false);
+        //End Pending workaround Part 2
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);
         //some action creator that updates state with the new confidence level and thesis values
         dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis}));
@@ -160,6 +167,7 @@ export const AssetBought = () => {
                 <AssetAIAnalysis aiAnalysis={aiAnalysis} confidenceLevel={confidenceLevel}/>
             </div>
             <div className={styles.actions}>
+                <h4 className={!chatGPTPending ? styles.pendingHide : styles.pendingShow}>Fetching AI Analysis...</h4>
                 <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} sellInProgress={sellInProgress} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
                 <AssetSell handleSell={handleSell} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress} nextAction={nextAction}/>
             </div>

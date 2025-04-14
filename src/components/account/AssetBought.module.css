@@ -27,6 +27,16 @@
     bottom: 0;
 }
 
+.pendingHide {
+    display: none;
+}
+
+.pendingShow {
+    display: default;
+    text-align: center;
+    color: goldenrod;
+}
+
 .actions button {
     margin: 0 1rem;
 }

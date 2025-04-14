@@ -68,21 +68,21 @@ export const accountAssetsSlice = createSlice({
                 {
                     dateAdded: 'updateThis',
                     dateAddedReadable: 'Apr 6, 2025',
-                    level: 3
+                    level: 8
                 }
             ],
             thesis: [
                 {
                     dateAdded: 'updateThis',
                     dateAddedReadable: 'Apr 6, 2025',
-                    thesis: 'This is an initial thesis, which is poorly thought out and must be updated sometime soon.'
+                    thesis: "Even though Trump is unpredictable, I think AAPL will perform well during his presidency. They have a solid balance sheet, haven't risen as much as other tech stocks in the last year, and I believe will be on the cutting edge of quantum computing. If Apple doesn't perform well, I think it will be a result of the overall economy dragging it down rather than anything specific to Apple."
                 }
             ],
             aiAnalysis: [
                 {
                     dateAdded: 'updateThis',
                     dateAddedReadable: 'Apr 6, 2025',
-                    aiAnalysis: "This is an initial analysis of the initial thesis, which might be longer than the actual thesis, so it's possible that I should rethink how to style these sections, depending on what happens with the length."
+                    aiAnalysis: "Your thesis reflects a strong fundamental basis for confidence in AAPL, particularly given its robust balance sheet and relative underperformance compared to other tech stocks—suggesting potential for upside. The macro acknowledgment of Trump’s unpredictability hints at an awareness of geopolitical and regulatory risks, though these are downplayed in favor of Apple’s resilience. The belief in Apple’s leadership in quantum computing suggests a forward-looking investment mindset, though that specific catalyst may be more speculative or long-term in nature. Your reasoning shows a rational separation between company-specific risk and broader economic risk, a hallmark of disciplined investing. Psychologically, the 8/10 confidence rating may reflect a bias toward Apple’s brand strength and track record, which can sometimes inflate investor optimism even in uncertain environments. Overall, your decision balances grounded fundamentals with a clear-eyed view of external uncertainties."
                 }
             ]           
         }
@@ -161,7 +161,7 @@ export const accountAssetsSlice = createSlice({
             const numdAssetIDParam = Number(assetIDParam);
             //const indexOfState = state.indexOf(asset => asset.assetId === assetIDParam);
             //alert(indexOfState);
-            alert(numdAssetIDParam);
+            //alert(numdAssetIDParam);
             const indexToUpdate = state.findIndex(asset => asset.assetId === numdAssetIDParam);
             const assetToUpdate = state.find(asset => asset.assetId === numdAssetIDParam);
             if (assetToUpdate) {
