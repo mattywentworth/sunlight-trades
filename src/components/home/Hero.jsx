@@ -25,7 +25,7 @@ const moreCopyOptions = {
     e: 'How can you repeat your wins and avoid repeating your losses if you don\'t truly understand your decision-making?',
     b: 'include a definition of post-hoc rationalization',
     c: 'include a definition of the fundamental attribution error',
-    c: 'a Does This Sound Like You? section'
+    d: 'a Does This Sound Like You? section'
 }
 
 const words = ['discipline', 'rules', 'emotion', 'reliable', 'unreliable'];
