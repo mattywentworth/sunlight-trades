@@ -2,6 +2,7 @@
     width: 100%;
     padding: 2rem 4rem;
     background-color: black;
+    /*background-image: radial-gradient(ellipse at center, #4f2906, black);*/
     color: white;
 }
 
