@@ -13,7 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
 import { addAssetToAccount, selectAccountAssets, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
 import { useParams, useNavigate } from 'react-router';
-
+import { callChatGPTForBuyPrompt } from '../../utils/aiAnalysisAPICall';
+import { convertDateToText } from '../../utils/dates';
 
 export const AddAssetForm = () => {
 
@@ -28,7 +29,7 @@ export const AddAssetForm = () => {
     const [thesis, setThesis] = useState('');
     const [thesisLength, setThesisLength] = useState(0);
 
-
+    const todaysDateReadable = convertDateToText();
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,14 +40,15 @@ export const AddAssetForm = () => {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const ticker = selectedSearchResult.ticker;
         const companyName = selectedSearchResult.companyName;
         const logo = selectedSearchResult.icon;
         const costBasis = selectedSearchResult.costBasis;
-        alert(costBasis);
-        dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis}))
+        const aiAnalysis = await callChatGPTForBuyPrompt(ticker, confidenceLevel, thesis, todaysDateReadable)
+        //alert(costBasis);
+        dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis, aiAnalysis}))
         /*const numAssets = accountAssets.length;
         const nextID = numAssets + 1;
         dispatch(addAssetToAccount({

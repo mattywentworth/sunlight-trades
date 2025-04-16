@@ -17,6 +17,7 @@ import { AccountHeader } from './AccountHeader';
 import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice';
 //for testing
 import OpenAI from 'openai';
+import { callChatGPTForHoldPrompt } from '../../utils/aiAnalysisAPICall';
 
 export const AssetBought = () => {
 
@@ -28,6 +29,8 @@ export const AssetBought = () => {
     const assetActions = currentAsset.watchBuySell;
     const length = assetActions.length;
     const mostRecentAction = assetActions[length - 1].action;
+    const mostRecentBuyDate = mostRecentAction.dateReadable;
+    const readableTodaysDate = convertDateToText();
 
     const [updateInProgress, setUpdateInProgress] = useState(false); //This is the overarching state value that determines what elements are expose and what eleigible actions are
     const [updatedConfidenceLevel, setUpdatedConfidenceLevel] = useState(5);
@@ -99,21 +102,23 @@ export const AssetBought = () => {
     const dispatch = useDispatch();
     const handleSubmitUpdate = async (e) => {
         e.preventDefault();
-        //Pending workaround Part 1
-        setChatGPTPending(true);
-        //End Pending workaround Part 1
-        //ChatGPT test
-        const aiAnalysis = await testChatGPTTwo();
-        //
-        //Pending workaround Part 2
-        setChatGPTPending(false);
-        //End Pending workaround Part 2
         let updateAction;
         if (mostRecentAction === 'Watch' || mostRecentAction === 'Sell') {
             updateAction = 'Keep Watching';
         } else if (mostRecentAction === 'Buy') {
             updateAction = 'Hold';
         }
+        //Pending workaround Part 1
+        setChatGPTPending(true);
+        //End Pending workaround Part 1
+        //ChatGPT test
+          //const aiAnalysis = await testChatGPTTwo();
+          const aiAnalysis = await callChatGPTForHoldPrompt(ticker, updateAction, mostRecentBuyDate, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
+        //
+        //Pending workaround Part 2
+        setChatGPTPending(false);
+        //End Pending workaround Part 2
+
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);
         //some action creator that updates state with the new confidence level and thesis values
         dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis, updateAction}));

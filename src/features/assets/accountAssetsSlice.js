@@ -95,7 +95,7 @@ export const accountAssetsSlice = createSlice({
             let nextAssetID = numAssets + 1;
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
-            const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis }} = action;
+            const {payload: { ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis, aiAnalysis }} = action;
             const initialValue = assetQty * costBasis;
             const roundedInitialValue = Number(initialValue.toFixed(2));
             const addedAsset = {
@@ -145,7 +145,7 @@ export const accountAssetsSlice = createSlice({
                     {
                         dateAdded: dateObject,
                         dateAddedReadable: readableDate,
-                        aiAnalysis: "This is an initial analysis of the initial thesis, which might be longer than the actual thesis, so it's possible that I should rethink how to style these sections, depending on what happens with the length.",
+                        aiAnalysis: aiAnalysis,
                         action: watchOrBuy
                     }
                 ]  
