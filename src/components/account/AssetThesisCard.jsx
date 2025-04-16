@@ -7,7 +7,7 @@ export const AssetThesisCard = ( { thesisDate, thesisText, confidence, action } 
         <div className={styles.container}>
             <div className={styles.dateAndConfidenceContainer}>
                 <div>{thesisDate}</div>
-                {/*<div>Action: {action}</div>*/}
+                <div>Action: {action}</div>
                 <div>Confidence: {confidence.level}</div>
             </div>
             <div>{thesisText}</div>

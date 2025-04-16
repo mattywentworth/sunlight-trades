@@ -47,7 +47,8 @@ export const AssetBought = () => {
         nextAction = 'Buy';
     };
 
-    const holdAction = 'Hold';
+    /*const holdPurchase = 'Hold';
+    const keepWatching = 'Keep Watching';*/
 
     const handleUpdateClick = (e) => {
         e.preventDefault();
@@ -75,7 +76,7 @@ export const AssetBought = () => {
         e.preventDefault();
         const thesisUpdateInput = document.getElementById('thesis-update');
         thesisSaved ? setThesisSaved(false) : setThesisSaved(true);
-        thesisSaved ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
+        thesisUpdateInput.disabled === false ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
         //thesisUpdateInput.disabled === false ? thesisUpdateInput.disabled = true : thesisUpdateInput.disabled = false;
     }
 
@@ -107,9 +108,15 @@ export const AssetBought = () => {
         //Pending workaround Part 2
         setChatGPTPending(false);
         //End Pending workaround Part 2
+        let updateAction;
+        if (mostRecentAction === 'Watch' || mostRecentAction === 'Sell') {
+            updateAction = 'Keep Watching';
+        } else if (mostRecentAction === 'Buy') {
+            updateAction = 'Hold';
+        }
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);
         //some action creator that updates state with the new confidence level and thesis values
-        dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis}));
+        dispatch(updateAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, aiAnalysis, updateAction}));
         setUpdateInProgress(false);
         setSellInProgress(false);
         setUpdatedConfidenceLevel(5);
@@ -163,7 +170,7 @@ export const AssetBought = () => {
                 <AssetDollarValue costBasis={costBasis}/>
             </div>
             <div className={styles.descriptions}>
-                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick} action={watchBuySell}/>
+                <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick} action={currentAsset.thesis.action}/>
                 <AssetAIAnalysis aiAnalysis={aiAnalysis} confidenceLevel={confidenceLevel}/>
             </div>
             <div className={styles.actions}>
