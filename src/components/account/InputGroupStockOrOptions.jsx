@@ -16,7 +16,7 @@ export const InputGroupStockOrOptions = ( { watchOrBuy, stockOrOptions, setStock
 
     return (
         <div className={styles.inputSection}>
-            <legend >Are you {watchOrBuyText} stock or options?</legend>{/* have the value oof stock or options change based on what user selected */}
+            <legend >Are you {watchOrBuyText} stock or options?</legend>
             <div className={styles.radioDuo}>
                 <input id='addAssetStock' name='stockOrOptions' type='radio' value='stock' defaultChecked onChange={handleChange}></input>
                 <label htmlFor='addAssetStock'>Stock</label>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './AddAssetForm.module.css';
 import { AddAssetFormSegment } from './AddAssetFormSegment';
 import { InputGroupWatchOrBuy } from './InputGroupWatchOrBuy';
-import { InputGroupStockOrOptions } from './InputGroupStockorOptions';
+import { InputGroupStockOrOptions } from './InputGroupStockOrOptions';
 import { InputGroupQty } from './InputGroupQty';
 import { InputGroupStopLoss } from './InputGroupStopLoss';
 import { InputGroupTakeProfit} from './InputGroupTakeProfit';
