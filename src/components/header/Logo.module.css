@@ -23,10 +23,54 @@
     line-height: 1;
 }
 
+.logoNameStack {
+    display: none;
+}
+
 .logoVisual {
     /*background-color: orange;*/
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 0 40px 0 0;
     background-image: linear-gradient(45deg, var(--color-red), var(--color-yellow));
+}
+
+@media screen and (max-width: 1024px) {
+    .logoName {
+        font-size: 2.5rem;
+    }
+
+    .logoVisual {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 830px) {
+
+    .logoName {
+        display: none;
+    }
+
+    .logoNameStack {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logoNameStackWordOne {
+        padding: 0;
+        margin-bottom: -.5rem;
+    }
+
+    .logoNameStackWordTwo {
+        padding: 0;
+        margin-bottom: -.3rem;
+        font-size: 1.3rem;
+    }
+
+    .logoVisual {
+        align-self: flex-end;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 }

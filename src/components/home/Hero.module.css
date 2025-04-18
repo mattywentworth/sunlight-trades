@@ -22,3 +22,20 @@
 .heroButton {
     font-size: 1.5rem;
 }
+
+@media screen and (max-width: 860px) {
+    .container {
+        padding: 3rem 1.5rem;
+    }
+    
+    .h1 {
+        width: 100%;
+        font-size: 2.5rem;
+    }
+
+    .h2 {
+        padding: 2rem 0 2rem 0;
+        font-size: 1.5rem;
+        width: 100%;
+    }
+}
