@@ -11,14 +11,44 @@
     margin-bottom: 2rem;
 }
 
+.form {
+    padding: 0 0 1.5rem 0;
+}
+
+.submitSection {
+    display: flex;
+    align-items: center;
+}
+
+.submitButton {
+    color: white;
+    margin: 0 1rem 0 0;
+}
+
 .usernameInputContainer, .passwordInputContainer {
     display: flex;
 }
 
 .usernameInputContainer input, .passwordInputContainer input {
     margin-right: 2rem;
+    line-height: 1.5;
+    height: 1.75rem;
 }
 
 /*.passwordInputContainer {
     display: flex;
 }*/
+
+@media screen and (max-width: 590px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .usernameInputContainer, .passwordInputContainer {
+        flex-direction: column;
+    }
+
+    .usernameInputContainer input, .passwordInputContainer input {
+        width: 10rem;
+    }
+}

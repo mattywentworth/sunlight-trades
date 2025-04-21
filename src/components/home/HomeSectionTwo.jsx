@@ -46,8 +46,8 @@ export const HomeSectionTwo = () => {
             <h3 className={styles.subHeader}>Have you noticed being influced by one of the concepts below?</h3>
             <h3 className={styles.subHeader}>How often are you being influenced but don't realize it?</h3>
             <div className={styles.cardContainer}>
-                {testArray.map(element => {
-                    return <SectionTwoCard textTitle={element.title} textText={element.text} />;
+                {testArray.map((element, index) => {
+                    return <SectionTwoCard textTitle={element.title} textText={element.text} key={index} />;
                 })}
             </div>
         </div>

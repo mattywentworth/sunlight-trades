@@ -18,6 +18,7 @@ export const Login = () => {
     const [usernameLengthValid, setUsernameLengthValid] = useState(false);
     const [passwordMessage, setPasswordMessage] = useState('');
     const [passwordLengthValid, setPasswordLengthValid] = useState(false);
+    const [loginWarning, setLoginWarning] = useState('')
 
     const FewerThanFive = 'You typed fewer than 5 characters';
     const EqualOrMoreThanFive = 'You typed 5 or more characters';
@@ -49,20 +50,23 @@ export const Login = () => {
         //alert(password.length);
     }
 
-    const handleMismatchedCredentials = (e) => {
+    /*const handleMismatchedCredentials = (e) => {
         //username != password ? e.target.disbaled = true : e.target.disabled = false;
         if (username !== password) {
             e.target.disabled = true;
             alert('Username and Password don\'t match');
         }
-    }
+    }*/
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (username === password && username.length > 3) {
+        if (username === password && username.length > 4 && password.length > 4) {
             navigate(`/account/${username}/overview/bought`);
-        } else {
-            alert('invalid credentials');
+        } else { //Is there any need to clearInterval?
+            setLoginWarning('Invalid Credentials');
+            setTimeout(() => {
+                setLoginWarning('');
+            }, 3000)
         }
     }
 
@@ -75,20 +79,22 @@ export const Login = () => {
                 <li>Username and Password must match.</li>
                 <li>Username and Password must be at least 5 characters long.</li>
             </ul>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='username-log-in'>Username {username}</label>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <label htmlFor='username-log-in'>Username</label>
                 <div className={styles.usernameInputContainer}>
                     <input id='username-log-in' onChange={handleUsernameChange}></input>
                     {/*<p>{usernameMessage}</p>*/}
                     <TestComponent inputLength={usernameLength} inputName={'Username'}/>
                 </div>
-                <label htmlFor='password-log-in'>Password {password}</label>
+                <label htmlFor='password-log-in'>Password</label>
                 <div className={styles.passwordInputContainer}>
                     <input id='password-log-in' type='password' onChange={handlePasswordChange}></input>
-                    {/*<p>{pLengthMessage}</p>*/}
                     <TestComponent inputLength={passwordLength} inputName={'Password'}/>
                 </div>
-                <input type='submit' onMouseOver={handleMismatchedCredentials}></input>
+                <div className={styles.submitSection}>
+                    <input className={styles.submitButton} type='submit' value='Sign In'></input>
+                    <p id='login-issue-message'>{loginWarning}</p>
+                </div>
             </form>
             <OAuthSection/>
         </div>

@@ -24,3 +24,9 @@
     font-weight: 700;
     font-size: 2rem;
 }
+
+@media screen and (max-width: 860px) {
+    .container {
+        padding: 1.5rem 2rem;
+    }
+}

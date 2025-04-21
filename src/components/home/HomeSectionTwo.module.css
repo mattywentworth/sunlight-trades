@@ -25,3 +25,9 @@
     justify-content: space-around;
     padding: 1rem 0rem;
 }
+
+@media screen and (max-width: 860px) {
+    .container {
+        padding: 1rem 2rem;
+    }
+}
