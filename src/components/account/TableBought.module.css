@@ -17,7 +17,7 @@
     /*height: 100%;*/
     /*overflow-x: scroll;*/
     table-layout: auto;
-    width: 100%;
+    width: auto;
 }
 
 .tableHead {
@@ -90,7 +90,8 @@ th, td {
 
 
 .logo {
-    width: 40px;
+    width: 50px;
+    padding: 0.35rem;
     margin-right: 0.5rem
 }
 
@@ -98,6 +99,7 @@ td button {
     border-radius: 10px;
     background-color: transparent;
     border: 1px solid white;
+    line-height: .7;
     /*margin: 0.75rem;
     padding: 0.5rem;*/
 }

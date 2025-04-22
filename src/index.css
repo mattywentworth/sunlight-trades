@@ -138,8 +138,16 @@ label {
   display: block;
 }
 
-tbody tr {/* Why isn't this doing anything?*/
-  padding: 0.5rem;
+table {
+  table-layout: fixed;
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+  display: block;
+}
+
+tr {/* Why isn't this doing anything?*/
+  padding: 0 0.5rem;
 }
 
 @media (prefers-color-scheme: light) {
