@@ -1,0 +1,43 @@
+.tableStructure td {
+    padding: 0 2rem 0 0;
+}
+
+.tableStructure a {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.companyInfo {
+    padding: 0 0.75rem 0 0;
+    display: flex;
+    align-items: center;
+    /*width: 100px;*/
+}
+
+.assetCategory {
+    width: auto;
+    padding: 0 0.75rem 0 0;
+}
+/*
+.totalValue {
+    width: 100px;
+    padding: 0 0.75rem 0 0;
+}*/
+/*
+.totalGainLoss {
+    width: 100px;
+    padding: 0 0.75rem 0 0;
+}
+*/
+.currentPrice {}
+
+.todaysGainLoss {}
+
+.costBasis {}
+
+.confidenceLevel {}
+
+.moreInfo {
+    padding: 0.5rem;
+}

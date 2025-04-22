@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './TableBought.module.css';
+import styles2 from './TableRow.module.css';
 import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams, NavLink } from 'react-router';
 
 export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, confidenceLevel, ownership, initialValue } ) => {
 
@@ -26,25 +27,26 @@ export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, co
         const confidenceLevel = assetInfo.confidenceLevel;*/
         tableRow =
         <>
-            <td className={styles.companyInfo}>
+            <td className={styles2.companyInfo}>
                 <img className={styles.logo} src={logo}></img>
                 <div>{ticker}</div>
             </td>
-            <td>{stockOrOptions}</td>
-            <td>${initialValue}</td>
-            <td>-15%</td>
-            <td>$350</td>
-            <td>-5%</td>
-            <td>${costBasis}</td>
-            <td>{confidenceLevel.level}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
-            <td>
-                <button onClick={navToAssetDetails}>Details</button>{/* Figure out proper usage here - button or Link element? */}
+            <td className={styles2.assetCategory}>{stockOrOptions}</td>
+            <td className={styles2.totalValue}>${initialValue}</td>
+            <td className={styles2.totalGainLoss}>-15%</td>
+            <td className={styles2.currentPrice}>$350</td>
+            <td className={styles2.todaysGainLoss}>-5%</td>
+            <td className={styles2.costBasis}>${costBasis}</td>
+            <td className={styles2.confidenceLevel}>{confidenceLevel.level}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
+            <td className={styles2.moreInfo}>
+                <NavLink to={`/account/${user}/${ownership}/${assetId}`}>Details</NavLink>
+                {/*<button onClick={navToAssetDetails}>Details</button> Figure out proper usage here - button or Link element? */}
             </td>
         </>
     }
 
     return (
-        <tr className={styles.tableStructure}>
+        <tr className={styles2.tableStructure}>
             {/*<td className={styles.companyInfo}>
                 <img className={styles.logo} src={logo}></img>
                 <div>{ticker}</div>

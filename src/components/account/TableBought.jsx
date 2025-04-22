@@ -14,17 +14,17 @@ export const TableBought = ( { lastAction, ownership } ) => {
     return (
         <div className={styles.container}>
             <table className={styles.table} id='xyz'> 
-                <thead className={styles.tableHead}>
+                <thead className={styles.tableHead} id='table-head'>
                     <tr className={styles.headerContainer}>
-                        <th className={styles.companyHeader}>Company</th>
-                        <th className={styles.companyHeader}>Type</th>
-                        <th className={styles.companyHeader}>Total Value</th>
-                        <th className={styles.companyHeader}>Total Gain/Loss</th>
+                        <th className={styles.companyInfo}>Company</th>
+                        <th className={styles.assetType}>Type</th>
+                        <th className={styles.totalValue}>Total Value</th>
+                        <th className={styles.totalGainLoss}>Total Gain/Loss</th>
                         <th className={styles.companyHeader}>Price</th>
                         <th className={styles.companyHeader}>Today's Gain/Loss</th>
                         <th className={styles.companyHeader}>Cost Basis</th>
                         <th className={styles.companyHeader}>Initial Confidence</th>
-                        <th className={styles.companyHeader}>{/*Actions*/}</th>
+                        <th className={styles.companyHeader}>See More</th>
                     </tr>
                 </thead>
                 <TableBody lastAction={lastAction} ownership={ownership} />

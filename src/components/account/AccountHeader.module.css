@@ -8,22 +8,23 @@
 }
 
 
-.container ul {
+.accountTabs {
     display: flex;
     border-bottom: 1px solid white;
 }
 
 .container li {
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0rem;
     background-color: black;
     width: auto;
-    height: auto;
+    height: 28px;
     padding: auto;
 }
 
 .container a {
     width: auto;
+    height: auto;
     margin-right: 2px;
     padding: 0.25rem 1rem;
     border-radius: 10px 10px 0 0;
@@ -49,4 +50,17 @@
 
 .container a:visited {
     color: inherit;
+}
+
+@media screen and (max-width: 760px) {
+    .container a {
+        font-size: 0.75rem;
+        text-wrap: nowrap;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .accountTabs {
+        overflow-x: scroll;
+    }
 }

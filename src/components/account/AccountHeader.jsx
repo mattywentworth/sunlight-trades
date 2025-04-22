@@ -38,7 +38,7 @@ export const AccountHeader = () => {
 
     return (
         <div className={styles.container}>
-            <ul id='account-tabs'>
+            <div id='account-tabs' className={styles.accountTabs}>
                 {/*<NavLink to='/account/:user/summary' id='test1' style={handleTabClick}>Summary</NavLink>*/}
                 <NavLink to={`/account/${params.user}/overview/summary`} id='test1' style={handleTabClick}>Summary</NavLink>
                 <NavLink to={`/account/${params.user}/overview/bought`} id='test2' style={handleTabClick}>Bought</NavLink>
@@ -47,7 +47,7 @@ export const AccountHeader = () => {
                 <NavLink to={`/account/${params.user}/overview/add-asset`} id='test5' style={handleTabClick} className={styles.test}>Add to a List</NavLink>
                 <NavLink to={`/account/${params.user}/overview/principles`} id='test6' style={handleTabClick} className={styles.test}>My Principles</NavLink>
                 {assetHeader}
-            </ul>
+            </div>
         </div>
     )
 }

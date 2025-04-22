@@ -2,3 +2,9 @@
     padding: 1rem 3rem;
     overflow: visible;
 }
+
+@media screen and (max-width: 760px) {
+    .container {
+        padding: 1rem 1.5rem;
+    }
+}

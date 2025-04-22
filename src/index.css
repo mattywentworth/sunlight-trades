@@ -53,6 +53,7 @@ main {
   min-height: 80vh;
   position: relative;
   top: 10vh;
+  width: 100%;
 }
 
 a {
@@ -135,6 +136,10 @@ input[type='submit'] {
 
 label {
   display: block;
+}
+
+tbody tr {/* Why isn't this doing anything?*/
+  padding: 0.5rem;
 }
 
 @media (prefers-color-scheme: light) {
