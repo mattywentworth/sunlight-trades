@@ -1,8 +1,9 @@
 .containerShow {
     display: default;
     background-color: var(--color-bg-section-dark);
-    padding: 1rem 0.5rem;
+    padding: 0rem 0.5rem;
     width: 100%;
+    margin: 0 0 2rem 0;
 }
 
 .containerHide {
@@ -20,7 +21,7 @@
 
 .formColumn {
     width: 50%;
-    margin-right: 2rem;
+    margin: 0 0.5rem;
 }
 
 .addFormSubmit {
@@ -28,7 +29,7 @@
 }
 
 .inputSection {
-    margin: 2rem;
+    margin: 1rem 0;
     background-color:#2E2E2E;
     /*border-radius: 10px;*/
     padding: 1rem;
@@ -69,13 +70,25 @@ input[type='radio'] {
     position: sticky;
     bottom: 0;
     padding: 1rem;
+    /*margin: 0 0 1rem 0;*/
     width: 100%;
     background-color: var(--color-bg-section-dark);
 }
 
 .submitButton {
     display: block;
-    color: black;
+    color: white;
     background-color: green;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+    .primaryFormInputs {
+        flex-direction: column;
+    }
+
+    .formColumn {
+        width: 100%;
+        margin: 0;
+    }
 }

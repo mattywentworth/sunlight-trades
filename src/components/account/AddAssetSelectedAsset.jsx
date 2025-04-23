@@ -21,7 +21,7 @@ export const AddAssetSelectedAsset = () => {
             <>
                 <img className={styles.logo} src={selectedSearchResult.icon}/>
                 <div className={styles.companyInfo}>
-                    <div>{selectedSearchResult.companyName}</div>
+                    <div className={styles.companyName}>{selectedSearchResult.companyName}</div>
                     <div>{selectedSearchResult.ticker}</div>
                 </div>
                 <button className={styles.remove} onClick={handleRemoveSelectedAsset}>Show Search Results</button>
