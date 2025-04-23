@@ -99,12 +99,14 @@ button:focus-visible {
 input {
   width: auto;
   display: block;
-  border-radius: 0;
+  /*border-radius: 5px;*/
+  border: none;
   color: black;
   background-color: floralwhite;
   font-size: 1rem;
   line-height: 1.5;
   margin: 0 0 0.5rem 0;
+  padding: 0.4rem;
 }
 
 textarea {
@@ -139,8 +141,8 @@ label {
 }
 
 table {
-  table-layout: fixed;
-  width: 100%;
+  table-layout: auto;
+  width: auto;
   overflow-x: scroll;
   white-space: nowrap;
   display: block;

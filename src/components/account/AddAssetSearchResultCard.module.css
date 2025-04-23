@@ -18,7 +18,7 @@
 }*/
 
 .add {
-    width: 20%;
+    width: 5rem;
     background-color: dimgray;
 }
 
@@ -26,6 +26,24 @@
     background-color: green;
 }
 
-.companyInfo {
+/*.companyInfo {
     width: 70%;
+}*/
+
+@media screen and (max-width: 940px) {
+    .companyInfo {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .container {
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .container {
+        width: 98%;
+    }
 }

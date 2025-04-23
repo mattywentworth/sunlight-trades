@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './AddAssetForm.module.css';
 import stylesPlus from './AddAssetSearch.module.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,11 +6,12 @@ import { updateSearchTerm, selectSearchTerm } from '../../features/add-asset/sea
 import { restClient } from '@polygon.io/client-js';
 //Probably need to edit lines below to use createAsyncThunk
 import { updateSearchResults, selectSearchResults, selectSelectedSearchResult, updateSelectedSearchResult, fetchStockSearchResults } from '../../features/add-asset/searchResultsSlice';
+//import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 
 
 export const AddAssetSearch = () => {
 
-
+    //const [duplicateAsset, setDuplicateAsset] = useState(false);
     
     const addAssetSearchTerm = useSelector(selectSearchTerm); //useSelector(state => state.addAssetSearch.value);
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const AddAssetSearch = () => {
     const searchTerm = useSelector(selectSearchTerm);
     const searchResults = useSelector(selectSearchResults);
     const selectedSearchResult = useSelector(selectSelectedSearchResult);
+
 
     let noResultsMessage;
     if (typeof searchResults === 'object' && searchResults.length === 0) {
@@ -103,6 +105,7 @@ export const AddAssetSearch = () => {
                     <input className={stylesPlus.searchButton} type='submit'></input>
                 </div>
             </form>
+            <p id="duplicate-selection-warning"></p>
             <div className={searchResults.length === 0 ? stylesPlus.noResultsMessageShow : stylesPlus.noResultsMessageHide} >{noResultsMessage}</div>
         </div>
     )

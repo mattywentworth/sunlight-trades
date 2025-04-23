@@ -3,11 +3,24 @@ import styles from './AddAssetSearchResultCard.module.css';
 import { restClient } from '@polygon.io/client-js';
 import { updateSelectedSearchResult, selectSelectedSearchResult, fetchTickerPriceWhenAdded } from '../../features/add-asset/searchResultsSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 
 export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
     
     const dispatch = useDispatch();
     const selection = useSelector(selectSelectedSearchResult);
+
+    const assets = useSelector(selectAccountAssets);
+    const checkAssetsForTicker = (clickedTicker) => {
+        const assetInPortfolio = assets.some(asset => {
+            //alert(typeof asset.ticker);
+            return asset.ticker === clickedTicker;
+        })
+        //alert(typeof clickedTicker);
+        //alert(assetInPortfolio);
+        return assetInPortfolio;
+    }
+    
 
     //Beg API test
     const polygonAPIKey = import.meta.env.VITE_API_KEY_POLYGON;
@@ -31,7 +44,7 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
             const icon = response.results.branding.icon_url;
             const urlQuery = `?apiKey=${polygonAPIKey}`;
             const usableIcon = `${icon}${urlQuery}`;
-            alert(usableIcon);
+            //alert(usableIcon);
             console.log(response);
             return usableIcon;
         } catch (error) {
@@ -40,6 +53,11 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
     }
 
     //End API test
+    /*
+    const duplicateWarningJSX = (
+        <p>TICKER already exists in your X list. Update it <a href="www.google.com">HERE</a>, or select a different asset if you want to add something new to your portfolio.</p>
+    )
+        */
 
     const handleAssetClick = async (e) => {
         e.preventDefault();
@@ -51,14 +69,21 @@ export const AddAssetSearchResultCard = ( {companyName, ticker} ) => {
         const imageUrl = await fetchCompanyIcon(ticker);
 
         //End icon API test
+        const tickerInAssets = checkAssetsForTicker(ticker);
+        //const duplicateWarning = document.getElementById('duplicate-selection-warning');
+        if (tickerInAssets) {
+            return alert(`${ticker} is already on one of your lists. Please update the asset there.`);
+        }
         //const icon = imageUrl;
         //alert(icon);
+        
         dispatch(updateSelectedSearchResult({
             ticker: ticker,
             companyName: name,
             icon: imageUrl //Must add '?apiKey=[insertAPIKey]' to url in order to access the icon
         }));
         dispatch(fetchTickerPriceWhenAdded({symbol: ticker}));
+        window.scroll(0,0);
     }
 
     let shortenedCompanyName;

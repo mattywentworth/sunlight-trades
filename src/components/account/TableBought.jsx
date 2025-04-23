@@ -12,7 +12,7 @@ export const TableBought = ( { lastAction, ownership } ) => {
     const accountAssets = useSelector(selectAccountAssets);
 
     return (
-        <div className={styles.container}>
+        
             <table className={styles.table} id='xyz'> 
                 <thead className={styles.tableHead} id='table-head'>
                     <tr className={styles.headerContainer}>
@@ -24,11 +24,10 @@ export const TableBought = ( { lastAction, ownership } ) => {
                         <th className={styles.companyHeader}>Today's Gain/Loss</th>
                         <th className={styles.companyHeader}>Cost Basis</th>
                         <th className={styles.companyHeader}>Initial Confidence</th>
-                        <th className={styles.companyHeader}>See More</th>
+                        <th className={styles.companyHeader}>Full Details</th>
                     </tr>
                 </thead>
                 <TableBody lastAction={lastAction} ownership={ownership} />
             </table>
-        </div>
     )
 }

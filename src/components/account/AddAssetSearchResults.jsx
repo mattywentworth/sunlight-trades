@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AddAssetSearchResults.module.css'
 import { useSelector } from 'react-redux';
 import { selectSearchResults, selectSelectedSearchResult, isPending } from '../../features/add-asset/searchResultsSlice';
+//import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { AddAssetSearchResultCard } from './AddAssetSearchResultCard';
 
 
@@ -22,6 +23,9 @@ export const AddAssetSearchResults = () => {
         pendingText = <>Search Results have loaded</>
     }
     */
+
+
+
     let companySearchResults;
     if (typeof searchResults === 'object') {
         companySearchResults = searchResults.map(element => {
