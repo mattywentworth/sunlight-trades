@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AssetThesis.module.css';
+import styles from './AssetAIAnalysis.module.css';
 import { AssetThesisCard } from '../account/AssetThesisCard';
 
 export const AssetAIAnalysis = ( { aiAnalysis, confidenceLevel } ) => {

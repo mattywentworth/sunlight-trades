@@ -168,11 +168,15 @@ export const AssetBought = () => {
             {/*<button onClick={testChatGPTTwo}>CHATGPT TEST</button>*/}
             <AccountHeader/>
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
-            <div className={styles.performance}>
+            <div className={styles.performanceContainer}>
+                <div className={styles.performanceOne}>
                 <AssetTotalChange/>
                 <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
+                </div>
+                <div className={styles.performanceTwo}>
                 <AssetTodaysChange/>
                 <AssetDollarValue costBasis={costBasis}/>
+                </div>
             </div>
             <div className={styles.descriptions}>
                 <AssetThesis thesis={thesis} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedThesis={updatedThesis} setUpdatedThesis={setUpdatedThesis} thesisSaved={thesisSaved} confidenceLevel={confidenceLevel} handleThesisSave={handleThesisSave} handleUpdateClick={handleUpdateClick} action={currentAsset.thesis.action}/>

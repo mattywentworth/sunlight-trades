@@ -5,7 +5,7 @@
     padding: 1rem;
     width: 30%;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .header {
@@ -34,10 +34,10 @@
 
 .ratingContainer h3 {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0 0 0.25rem 0;
 }
 
 .ratingContainer p {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }

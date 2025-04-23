@@ -1,8 +1,49 @@
 .container {
-    display: flex;
+    /*display: flex;*/
     background-color: var(--color-bg-section-dark);
     margin: 0 0 0 0.5rem;
     padding: 1rem;
     width: 50%;
     text-align: center;
+}
+/*
+.container {
+    background-color: var(--color-bg-section-dark);
+    margin: 0 0.5rem 0 0;
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+}
+*/
+.header {
+    display: flex;
+    margin: 0 0 1rem 0;
+}
+
+.headerSides {
+    width: 20%;
+}
+
+.container h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.update {
+    font-size: 0.5rem;
+    text-align: default;
+    width: auto;
+    background-color: dimgray;
+    border-radius: 10px;
+    padding: 0.25rem;
+    float: right;
+}
+
+@media screen and (max-width: 740px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        max-height: 750px;
+        overflow: scroll;
+    }
 }
