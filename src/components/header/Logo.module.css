@@ -31,8 +31,8 @@
     /*background-color: orange;*/
     width: 2.2rem;
     height: 2.2rem;
-    border-radius: 0 40px 0 0;
-    background-image: linear-gradient(45deg, var(--color-red), var(--color-yellow));
+    border-radius: 0 0 40px 0;
+    background-image: linear-gradient(135deg, /*var(--color-red)*/ tomato, var(--color-yellow));
 }
 
 @media screen and (max-width: 1024px) {

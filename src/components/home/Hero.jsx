@@ -37,7 +37,7 @@ export const Hero = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.h1}>{heroHeaderOptions.k}</h1>
+            <h1 className={styles.h1}>Expose your <span>self-deception</span>.</h1>
             <h2 className={styles.h2}>{heroSubHeaderOptions.e}</h2>
             <button className={styles.heroButton}>Sign Up for Free</button>
         </div>
