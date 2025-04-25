@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Bought.module.css';
 import { AccountHeader } from './AccountHeader';
 import { TableBought } from '../account/TableBought';
-import { useSelector } from 'react-redux';
-import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAccountAssets, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
 import { Link, useParams } from 'react-router';
 
 export const Bought = () => {
@@ -25,6 +25,10 @@ export const Bought = () => {
         )
     }
 
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchTickerPriceOnAssetTableLoad('AAPL'));
+    }, [dispatch]);
 
     return (
         <div>

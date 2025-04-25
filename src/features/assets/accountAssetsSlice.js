@@ -15,22 +15,42 @@ const params = {
     methods: ['price']
 };
 
+export const fetchTickerPriceOnLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnLoad',
+    async (stockSymbol) => {
+        const response = await client
+            .price(stockSymbol);
+            /*.then(data => {
+                alert(data.price);
+            })*/
+        //return response.price;
+        const price = Number(response.price);
+        //alert(typeof price);
+        const roundedPrice = price.toFixed(2);
+        const numdRoundedPrice = Number(roundedPrice);
+        return numdRoundedPrice;
+    }
+)
+
+/*Struggling to figure out why this and the function below it aren't working
 export const fetchTickerPriceOnAssetTableLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnAssetTableLoad',
     async (stockSymbol) => {
         const response = await client
             .timeSeries(stockSymbol);
-        return response.values;//need to filter this down more
+        //console.log(response.values);
+        return response;//need to filter this down more
     }
-);
+);*/
 
-/*const testFunc = async () => {
+/*Struggling to figure out why function below isn't pulling time series data
+export const testFunc = async () => {
     try {
-        const response = fetch('https://api.twelvedata.com/time_series?symbol=AAPL&interval=1min&apikey=d694183c91ba4dd49a49c85d10021f81');
-        console.log(response);
-    } catch {
-        console.log('error');
+        const response = await fetch(`https://api.twelvedata.com/time_series?symbol=AAPL&interval=1day&apikey=${twelvedataAPIKey}`);
+        console.log(Object.keys(response));
+    } catch (error) {
+        console.log(error);
     }
-};*/
+};
+*/
 
 /*const fetchStockPrice = createAsyncThunk('accountAssets',
     async(ticker, thunkAPI) => {
@@ -118,7 +138,7 @@ export const accountAssetsSlice = createSlice({
                 initialValue: roundedInitialValue,
                 todaysValues: {
                     open: 'someValue',
-                    current: 'someValue',
+                    current: costBasis,
                     dollarChange: 'someValue',
                     percentChange: 'someValue'
                 },
@@ -233,7 +253,7 @@ export const accountAssetsSlice = createSlice({
                 alert('pending');
             })
             .addCase(fetchTickerPriceOnAssetTableLoad.fulfilled, (state, action) => {
-                alert(action.payload[0].close);
+                alert(action.payload.message);
 
             })
             .addCase(fetchTickerPriceOnAssetTableLoad.rejected, (state, action) => {
