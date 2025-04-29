@@ -21,7 +21,7 @@ const heroSubHeaderOptions = {
     b: '99% of investors can\'t accurately recall why they made their last 3 buy or sell decisions. If you don\'t truly understand your trading behavior — and the impact of your emotions — how can you replicate your wins and avoid duplicating your losses?',
     c: '83% of investors are highly confident in their trading decisions, but only 13% of investors consistently outperform the market.',
     d: '99% of investors can\'t accurately recall why they made their last 3 buy and sell decisions. If you\'re not accountable to your own actions and psyhology, how do you repeat your wins and avoid repeating your losses?',
-    e: "The story you tell yourself about your investing is different from reality. Shine a light on how psychology influences you, and make decisions with informed confidence."
+    e: "The story you tell yourself about your investing is different from reality. Shine a light on how psychology influences you, and make winning bets more consistently."
 }
 
 const moreCopyOptions = {
@@ -40,7 +40,7 @@ export const Hero = () => {
         <div className={styles.container}>
             <h1 className={styles.h1}>Expose your <span>self-deception</span>.</h1>
             <h2 className={styles.h2}>{heroSubHeaderOptions.e}</h2>
-            <Link className={styles.heroLink} to='/login'> Sign Up For Free</Link>
+            <Link className={styles.heroLink} to='/login'> See The Light</Link>
         </div>
     )
 }

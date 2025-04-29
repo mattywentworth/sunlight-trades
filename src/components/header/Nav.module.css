@@ -1,6 +1,7 @@
 nav {
-    max-width: 40%;
-    min-width: 20%;
+    /*max-width: 40%;
+    min-width: 20%;*/
+    width: auto;
 }
 
 nav ul {

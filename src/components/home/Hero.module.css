@@ -1,12 +1,13 @@
 .container {
     text-align: center;
-    padding: 5rem 3rem;
+    padding: 6rem 3rem 8rem 3rem;
     background-image: radial-gradient(ellipse at top left, #4f2906, black);
     
 }
 
 .h1 {
     /*padding: 6rem 3rem 3rem 3rem;*/
+    font-family: sora, sans-serif;
     font-size: 3.5rem;
     width: 70%;
     margin: 0 auto;
@@ -30,7 +31,7 @@
 
 .h2 {
     padding: 3rem 0 4rem 0;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     font-size: 2rem;
 }

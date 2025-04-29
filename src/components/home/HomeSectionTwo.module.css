@@ -1,14 +1,39 @@
 .container {
     width: 100%;
-    padding: 2rem 4rem;
+    padding: 0rem;
     background-color: black;
     /*background-image: radial-gradient(ellipse at center, #4f2906, black);*/
     color: white;
+    display: flex;
+}
+
+.columnLeft, .columnRight {
+    padding: 2.5rem;
+}
+
+.columnLeft {
+    background-color:maroon;
+}
+
+.columnRight {
+    background-color: green;
+    /*color: black;*/
 }
 
 .header {
     font-size: 2rem;
-    margin-left: 2rem;
+    margin: 0 0 1rem 0;
+    font-family: sora, sans-serif;
+}
+
+.list {
+    list-style: disc;
+    padding: 0 0 0 1rem;
+}
+
+.list li {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.5rem;
 }
 
 .subHeader {
@@ -26,8 +51,37 @@
     padding: 1rem 0rem;
 }
 
-@media screen and (max-width: 860px) {
-    .container {
+@media screen and (max-width: 1000px) {
+    /*.container {
         padding: 1rem 2rem;
+    }*/
+
+    .header {
+        font-size: 1.5rem;
     }
+
+    .list li {
+        font-size: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width: 765px) {
+    .header {
+        font-size: 1.2rem;
+    }
+
+    .list li {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+
+    /*.header {
+        font-size: 
+    }*/
 }

@@ -46,7 +46,11 @@
     }
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 700px) {
+
+    .link {
+        align-items: center;
+    }
 
     .logoName {
         display: none;
@@ -69,8 +73,9 @@
     }
 
     .logoVisual {
-        align-self: flex-end;
-        width: 2.5rem;
+        /*align-self: flex-end;*/
+        margin-left: -.5rem;
+        width: 3.5rem;
         height: 2.5rem;
-    }
+}
 }
