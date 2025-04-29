@@ -11,7 +11,7 @@ import { InputGroupConfidence } from './InputGroupConfidence';
 import { InputGroupThesis } from './InputGroupThesis';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedSearchResult } from '../../features/add-asset/searchResultsSlice';
-import { addAssetToAccount, selectAccountAssets, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
+import { addAssetToAccount, selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { useParams, useNavigate } from 'react-router';
 import { callChatGPTForBuyPrompt } from '../../utils/aiAnalysisAPICall';
 import { convertDateToText } from '../../utils/dates';

@@ -3,7 +3,7 @@ import styles from './Bought.module.css';
 import { AccountHeader } from './AccountHeader';
 import { TableBought } from '../account/TableBought';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAccountAssets, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
+import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { Link, useParams } from 'react-router';
 
 export const Bought = () => {
@@ -25,10 +25,12 @@ export const Bought = () => {
         )
     }
 
+    /*
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchTickerPriceOnAssetTableLoad('AAPL'));
     }, [dispatch]);
+    */
 
     return (
         <div>

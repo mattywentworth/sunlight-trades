@@ -17,6 +17,7 @@ const params = {
 
 export const fetchTickerPriceOnLoad = createAsyncThunk('accountAssets/fetchTickerPriceOnLoad',
     async (stockSymbol) => {
+        const ticker = stockSymbol.symbol;
         const response = await client
             .price(stockSymbol);
             /*.then(data => {
@@ -27,7 +28,10 @@ export const fetchTickerPriceOnLoad = createAsyncThunk('accountAssets/fetchTicke
         //alert(typeof price);
         const roundedPrice = price.toFixed(2);
         const numdRoundedPrice = Number(roundedPrice);
-        return numdRoundedPrice;
+        return {
+            ticker: ticker,
+            price: numdRoundedPrice
+        }//numdRoundedPrice;
     }
 )
 
@@ -80,6 +84,14 @@ export const accountAssetsSlice = createSlice({
             quantity: 10,
             costBasis: 201.73,
             initialValue: 2017.30,
+            currentValue: 2017.30,
+            totalGainLoss: 0,
+            todaysValues: {
+                open: 'someValue',
+                current: 201.73,
+                dollarChange: 'someValue',
+                percentChange: 'someValue'
+            },
             stopLossYesNo: 'No',
             stopLossPercentage: null,
             takeProfitYesNo: 'No',
@@ -136,6 +148,8 @@ export const accountAssetsSlice = createSlice({
                 quantity: assetQty,
                 costBasis: costBasis,
                 initialValue: roundedInitialValue,
+                currentValue: roundedInitialValue,
+                totalGainLoss: 0,
                 todaysValues: {
                     open: 'someValue',
                     current: costBasis,
@@ -249,14 +263,29 @@ export const accountAssetsSlice = createSlice({
     },
     extraReducers: (builder) => { //Given how heavy this is on API calls, this should only be called once per day on the weekend
         builder
-            .addCase(fetchTickerPriceOnAssetTableLoad.pending, (state, action) => {
-                alert('pending');
+            .addCase(fetchTickerPriceOnLoad.pending, (state, action) => {
+                console.log('pending');
             })
-            .addCase(fetchTickerPriceOnAssetTableLoad.fulfilled, (state, action) => {
-                alert(action.payload.message);
+            .addCase(fetchTickerPriceOnLoad.fulfilled, (state, action) => {
+                //alert(action.payload.price);
+                const {payload: {ticker, price} } = action;
+                const indexToUpdate = state.findIndex(asset => asset.ticker = ticker);
+                //alert(indexToUpdate);
+                const assetToUpdate = state[indexToUpdate];
+                const newStateArray = [...state];
+                //alert(newStateArray[indexToUpdate].todaysValues.current);
+                newStateArray[indexToUpdate].todaysValues.current = price;
+                //alert(state[indexToUpdate].todaysValues.current);
+                const costBasis = newStateArray[indexToUpdate].costBasis;
+                const totalGainLoss = (price - costBasis) / costBasis * 100;
+                newStateArray[indexToUpdate].totalGainLoss = totalGainLoss.toFixed(2);
+                //alert(totalGainLoss.toFixed(2));
+                const numShares = newStateArray[indexToUpdate].quantity;
+                const currentValue = price * numShares;
+                newStateArray[indexToUpdate].currentValue = currentValue.toFixed(2);
 
             })
-            .addCase(fetchTickerPriceOnAssetTableLoad.rejected, (state, action) => {
+            .addCase(fetchTickerPriceOnLoad.rejected, (state, action) => {
                 alert('rejected');
             })
     }

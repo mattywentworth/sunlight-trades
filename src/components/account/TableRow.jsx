@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectAccountAssets } from '../../features/assets/accountAssetsSlice';
 import { useNavigate, useParams, NavLink } from 'react-router';
 
-export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, confidenceLevel, ownership, initialValue } ) => {
+export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, price, currentValue, totalGainLoss, confidenceLevel, ownership, initialValue } ) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -32,10 +32,10 @@ export const TableRow = ( { assetId, ticker, logo, stockOrOptions, costBasis, co
                 <div>{ticker}</div>
             </td>
             <td className={styles2.assetCategory}>{stockOrOptions}</td>
-            <td className={styles2.totalValue}>${initialValue}</td>
-            <td className={styles2.totalGainLoss}>-15%</td>
-            <td className={styles2.currentPrice}>$350</td>
-            <td className={styles2.todaysGainLoss}>-5%</td>
+            <td className={styles2.totalValue}>${currentValue}</td>
+            <td className={styles2.totalGainLoss}>{totalGainLoss}%</td>
+            <td className={styles2.currentPrice}>${price}</td>
+            <td className={styles2.todaysGainLoss}>X%</td>
             <td className={styles2.costBasis}>${costBasis}</td>
             <td className={styles2.confidenceLevel}>{confidenceLevel.level}/10</td>{/* Will I need to convert confidenceLevel from a string to a number first? */}
             <td className={styles2.moreInfo}>

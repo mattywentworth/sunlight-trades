@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './AssetBought.module.css';
 import { AssetCompanyHeader } from './AssetCompanyHeader';
 import { AssetTotalChange } from './AssetTotalChange';
@@ -11,12 +11,13 @@ import { AssetSell } from './AssetSell';
 import { AssetUpdate } from './AssetUpdate';
 import { useParams } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAccountAssets, updateAsset, sellAsset, fetchTickerPriceOnAssetTableLoad } from '../../features/assets/accountAssetsSlice';
+import { selectAccountAssets, updateAsset, sellAsset, fetchTickerPriceOnLoad } from '../../features/assets/accountAssetsSlice';
 import { convertDateToText } from '../../utils/dates';
 import { AccountHeader } from './AccountHeader';
 import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice';
 //for testing
 import OpenAI from 'openai';
+import twelvedata from 'twelvedata';
 import { callChatGPTForHoldPrompt } from '../../utils/aiAnalysisAPICall';
 
 export const AssetBought = () => {
@@ -25,8 +26,9 @@ export const AssetBought = () => {
     const assetIDParam = parseInt(params.assetID);
     const accountAssets = useSelector(selectAccountAssets);
     const currentAsset = accountAssets.find(asset => asset.assetId === assetIDParam);
-    const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, watchBuySell, aiAnalysis} = currentAsset;
+    const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, totalGainLoss, watchBuySell, aiAnalysis} = currentAsset;
     const assetActions = currentAsset.watchBuySell;
+    const currentPrice = currentAsset.todaysValues.current;
     const length = assetActions.length;
     const mostRecentAction = assetActions[length - 1].action;
     const mostRecentBuyDate = mostRecentAction.dateReadable;
@@ -162,20 +164,45 @@ export const AssetBought = () => {
         e.preventDefault();
         dispatch(generateAIAnalysis());
     }
+/*
+    const twelvedataAPIKey = import.meta.env.VITE_API_KEY_TWELVEDATA;
+    const config = {
+        key: twelvedataAPIKey,
+    };
+    const clientTwelveData = twelvedata(config);
+
+    const fetchTickerPriceOnLoad = async (stockSymbol) => {
+            const response = await clientTwelveData
+                .price(stockSymbol);
+            const price = Number(response.price);
+            const roundedPrice = price.toFixed(2);
+            const numdRoundedPrice = Number(roundedPrice);
+            return numdRoundedPrice;
+        }
+
+    const testTen = async () => {
+        const price = await fetchTickerPriceOnLoad({symbol: 'AAPL'});
+        alert(price);
+    }
+*/
+
+    useEffect(()=> {
+        dispatch(fetchTickerPriceOnLoad({symbol: ticker}));
+    }, [dispatch]);
 
     return (
         <div>
-            {/*<button onClick={testChatGPTTwo}>CHATGPT TEST</button>*/}
+            {/*<button onClick={testTen}>CHATGPT TEST</button>*/}
             <AccountHeader/>
             <AssetCompanyHeader ticker={ticker} companyName={companyName} logo={logo}/>
             <div className={styles.performanceContainer}>
                 <div className={styles.performanceOne}>
-                <AssetTotalChange/>
-                <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
+                    <AssetTotalChange totalGainLoss={totalGainLoss}/>
+                    <AssetConfidenceLevel confidenceLevel={confidenceLevel} updateInProgress={updateInProgress} sellInProgress={sellInProgress} updatedConfidenceLevel={updatedConfidenceLevel} setUpdatedConfidenceLevel={setUpdatedConfidenceLevel} handleConfidenceLevelSave={handleConfidenceLevelSave} confidenceLevelSaved={confidenceLevelSaved} handleUpdateClick={handleUpdateClick}/>
                 </div>
                 <div className={styles.performanceTwo}>
-                <AssetTodaysChange/>
-                <AssetDollarValue costBasis={costBasis}/>
+                    <AssetTodaysChange/>
+                    <AssetDollarValue costBasis={costBasis} currentPrice={currentPrice}/>
                 </div>
             </div>
             <div className={styles.descriptions}>

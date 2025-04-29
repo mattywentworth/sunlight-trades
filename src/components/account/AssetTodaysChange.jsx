@@ -11,7 +11,7 @@ export const AssetTodaysChange = () => {
     if (dayOfWeek === 6 || dayOfWeek === 0) {
         content = <p>The market is not open today</p>
     } else {
-        content = <p>1.5%</p>
+        content = <p>X%</p>
     }
 
     return (
