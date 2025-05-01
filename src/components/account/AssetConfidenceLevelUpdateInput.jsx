@@ -15,7 +15,7 @@ export const AssetConfidenceLevelUpdateInput = ( { updateInProgress, sellInProgr
 
     return (
         <form className={updateInProgress || sellInProgress ? styles.containerShow : styles.containerHide}>
-            <label for='confidence-level-update'>New confidence level:</label>
+            <label for='confidence-level-update'>Select your new confidence level:</label>
             <input className={styles.rangeInput} type='range' id='confidence-level-update' name='confidence-level-update' min={1} max={10} step={1} value={updatedConfidenceLevel}  onChange={handleChange} list='markers-confidence-level-update'></input>
             <p>{updatedConfidenceLevel}</p>
             {/*<datalist id='markers-confidence-level-update'>

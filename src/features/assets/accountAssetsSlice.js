@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { convertDateToText } from '../../utils/dates';
 import twelvedata from 'twelvedata';
+import { useNavigate, useParams } from 'react-router';
 
 const twelvedataAPIKey = import.meta.env.VITE_API_KEY_TWELVEDATA;
 
@@ -254,7 +255,7 @@ export const accountAssetsSlice = createSlice({
                     dateAdded: dateObject,
                     dateAddedReadable: readableDate,
                     level: updatedConfidenceLevel
-                })
+                });
             } else {
                 alert('Error: could not find requested asset.');
             };
@@ -264,7 +265,7 @@ export const accountAssetsSlice = createSlice({
     extraReducers: (builder) => { //Given how heavy this is on API calls, this should only be called once per day on the weekend
         builder
             .addCase(fetchTickerPriceOnLoad.pending, (state, action) => {
-                console.log('pending');
+                console.log('pending');//state.fetchTickerPriceOnLoad.pending = true;
             })
             .addCase(fetchTickerPriceOnLoad.fulfilled, (state, action) => {
                 //alert(action.payload.price);
@@ -286,7 +287,7 @@ export const accountAssetsSlice = createSlice({
 
             })
             .addCase(fetchTickerPriceOnLoad.rejected, (state, action) => {
-                alert('rejected');
+                alert('There was an error finding the current stock price.');
             })
     }
 })

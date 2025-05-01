@@ -9,7 +9,7 @@ import { AssetThesis } from './AssetThesis';
 import { AssetAIAnalysis } from './AssetAIAnalysis';
 import { AssetSell } from './AssetSell';
 import { AssetUpdate } from './AssetUpdate';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAccountAssets, updateAsset, sellAsset, fetchTickerPriceOnLoad } from '../../features/assets/accountAssetsSlice';
 import { convertDateToText } from '../../utils/dates';
@@ -22,8 +22,10 @@ import { callChatGPTForHoldPrompt } from '../../utils/aiAnalysisAPICall';
 
 export const AssetBought = () => {
 
+    const navigate = useNavigate();
     const params = useParams();
     const assetIDParam = parseInt(params.assetID);
+    const userID = params.user;
     const accountAssets = useSelector(selectAccountAssets);
     const currentAsset = accountAssets.find(asset => asset.assetId === assetIDParam);
     const {ticker, companyName, confidenceLevel, thesis, logo, costBasis, totalGainLoss, watchBuySell, aiAnalysis} = currentAsset;
@@ -140,6 +142,12 @@ export const AssetBought = () => {
     const handleSell = (e) => {
         e.preventDefault();
         dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, nextAction}));
+        if (nextAction === 'Sell') {
+            navigate(`/account/${userID}/sold/${assetIDParam}`)
+        } else if (nextAction === 'Buy') {
+            navigate(`/account/${userID}/bought/${assetIDParam}`)
+        }
+        
         setUpdateInProgress(false);
         setSellInProgress(false);
         setUpdatedConfidenceLevel(5);

@@ -1,7 +1,7 @@
 .container {
     text-align: center;
     padding: 6rem 3rem 8rem 3rem;
-    background-image: radial-gradient(ellipse at top left, #4f2906, black);
+    background-image: radial-gradient(ellipse at top left,/* #4f2906,*/ goldenrod, black);
     
 }
 
@@ -39,8 +39,14 @@
 .heroLink {
     font-size: 1.5rem;
     padding: 1rem 2rem;
-    background-color: green;
+    background-color: black;
+    border: 2px solid black;
     border-radius: 50px;
+}
+
+.heroLink:hover {
+    background-color: goldenrod;
+    color: black;
 }
 
 @media screen and (max-width: 860px) {
