@@ -20,7 +20,7 @@ export const AddAssetForm = () => {
 
     const [watchOrBuy, setWatchOrBuy] = useState('Buy');
     const [stockOrOptions, setStockOrOptions] = useState('stock');
-    const [assetQty, setAssetQty] = useState(null);
+    const [assetQty, setAssetQty] = useState(undefined);
     const [stopLossYesNo, setStopLossYesNo] = useState('No');
     const [stopLossPercentage, setStopLossPercentage] = useState(0);
     const [takeProfitYesNo, setTakeProfitYesNo] = useState('No');

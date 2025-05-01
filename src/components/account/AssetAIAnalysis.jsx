@@ -15,7 +15,7 @@ export const AssetAIAnalysis = ( { aiAnalysis, confidenceLevel } ) => {
             </div>
             {aiAnalysis.map((analysisElement, index) => {
                 //alert(index);
-                return <AssetThesisCard thesisDate={analysisElement.dateAddedReadable} thesisText={analysisElement.aiAnalysis} confidence={confidenceLevel[index]} action={analysisElement.action}/> 
+                return <AssetThesisCard thesisDate={analysisElement.dateAddedReadable} thesisText={analysisElement.aiAnalysis} confidence={confidenceLevel[index]} action={analysisElement.action} key={index}/> 
             })}
         </div>
     )

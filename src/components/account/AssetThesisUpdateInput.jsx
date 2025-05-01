@@ -18,7 +18,7 @@ export const AssetThesisUpdateInput = ( { updateInProgress, sellInProgress, upda
 
     return (
         <form className={updateInProgress || sellInProgress ? styles.containerShow : styles.containerHide}>
-            <label for='thesis-update'>Write an update to your thesis:</label>
+            <label htmlFor='thesis-update'>Write an update to your thesis:</label>
             <textarea id='thesis-update' name='thesis-update' value={updatedThesis} onChange={handleChange} placeholder={placeholder} rows={15}></textarea>
             <div className={styles.actions}>
                 <input className={thesisSaved ? styles.submitInputSaved : styles.submitInputUnsaved} type='submit' value={buttonText} onClick={handleThesisSave}></input>

@@ -19,7 +19,7 @@ export const InputGroupThesis = ( { thesis, setThesis, thesisLength, setThesisLe
             <label htmlFor='addAssetThesis'>What is your investment thesis?</label>
             {/*<ThesisLengthDisplay thesisLength={thesisLength} />*/}
             <p>You've typed {thesisLength} of 400 required characters in your thesis.</p>
-            <textarea value={thesis} onChange={handleChange} id='addAssetThesis' name='thesis' placeholder={thesisPlaceholder} minlength='10' maxlength='5000' cols={30} rows={15} wrap='hard' className={styles.thesisTextArea}></textarea>
+            <textarea value={thesis} onChange={handleChange} id='addAssetThesis' name='thesis' placeholder={thesisPlaceholder} minLength='10' maxLength='5000' cols={30} rows={15} wrap='hard' className={styles.thesisTextArea}></textarea>
         </div>
     )
 }
