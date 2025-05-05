@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './AssetSell.module.css'
 
-export const AssetSell = ( { handleSell, sellInProgress, handleUpdateClick, thesisSaved, confidenceLevelSaved, updateInProgress, nextAction } ) => {
+export const AssetSell = ( { handleSell, handleBuy, sellInProgress, handleUpdateClick, thesisSaved, confidenceLevelSaved, updateInProgress, nextAction } ) => {
 
     let buttonText;
     if (sellInProgress) {
@@ -20,7 +20,7 @@ export const AssetSell = ( { handleSell, sellInProgress, handleUpdateClick, thes
     return (
         <>
             <button className={styles.sellButton} onClick={handleUpdateClick}>{buttonText}</button>
-            <button id='complete-sell-button' onClick={handleSell} className={sellInProgress ? styles.completeSellButtonShow : styles.completeSellButtonHide}>Complete {nextAction}</button>
+            <button id='complete-sell-button' onClick={nextAction === 'Sell' ? handleSell : handleBuy} className={sellInProgress ? styles.completeSellButtonShow : styles.completeSellButtonHide}>Complete {nextAction}</button>
         </>
     )
 }

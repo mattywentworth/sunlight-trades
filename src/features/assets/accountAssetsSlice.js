@@ -232,7 +232,7 @@ export const accountAssetsSlice = createSlice({
             };
         },
         sellAsset: (state, action) => {
-            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel, nextAction }} = action;
+            const {payload: { assetIDParam, updatedThesis, updatedConfidenceLevel, assetAction, aiAnalysis }} = action;
             const dateObject = Date();
             const readableDate = convertDateToText(dateObject);
             const numdAssetIDParam = Number(assetIDParam);
@@ -244,18 +244,25 @@ export const accountAssetsSlice = createSlice({
                 newStateArray[indexToUpdate].watchBuySell.push({
                     date: dateObject,
                     dateReadable: readableDate,
-                    action: nextAction
+                    action: assetAction
                 })
                 newStateArray[indexToUpdate].thesis.push({
                     dateAdded: dateObject,
                     dateAddedReadable: readableDate,
-                    thesis: updatedThesis
+                    thesis: updatedThesis,
+                    action: assetAction
                 });
                 newStateArray[indexToUpdate].confidenceLevel.push({
                     dateAdded: dateObject,
                     dateAddedReadable: readableDate,
                     level: updatedConfidenceLevel
                 });
+                newStateArray[indexToUpdate].aiAnalysis.push({
+                    date: dateObject,
+                    dateAddedReadable: readableDate,
+                    aiAnalysis: aiAnalysis,
+                    action: assetAction
+                })
             } else {
                 alert('Error: could not find requested asset.');
             };

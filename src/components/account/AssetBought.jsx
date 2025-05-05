@@ -18,7 +18,7 @@ import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice'
 //for testing
 import OpenAI from 'openai';
 import twelvedata from 'twelvedata';
-import { callChatGPTForHoldPrompt } from '../../utils/aiAnalysisAPICall';
+import { callChatGPTForHoldPrompt, callChatGPTForSellPrompt, callChatGPTForBuyPrompt } from '../../utils/aiAnalysisAPICall';
 import { updatePendingState } from '../../features/account/pendingCallSlice';
 
 export const AssetBought = ( {setCallPending} ) => {
@@ -34,7 +34,11 @@ export const AssetBought = ( {setCallPending} ) => {
     const currentPrice = currentAsset.todaysValues.current;
     const length = assetActions.length;
     const mostRecentAction = assetActions[length - 1].action;
-    const mostRecentBuyDate = mostRecentAction.dateReadable;
+    //const mostRecentBuyDate = mostRecentAction.dateReadable;
+    //Buys test
+    const allBuys = assetActions.filter(action => action.action === 'Buy');
+    const mostRecentBuyDateTest = allBuys[allBuys.length - 1].dateReadable;
+    //End Buys test
     const readableTodaysDate = convertDateToText();
 
     const [updateInProgress, setUpdateInProgress] = useState(false); //This is the overarching state value that determines what elements are expose and what eleigible actions are
@@ -114,7 +118,7 @@ export const AssetBought = ( {setCallPending} ) => {
 
     const dispatch = useDispatch();
     const handleSubmitUpdate = async (e) => {
-        const loadingOverlay = document.getElementById("loading-overlay");
+        //const loadingOverlay = document.getElementById("loading-overlay");
         e.preventDefault();
         let updateAction;
         if (mostRecentAction === 'Watch' || mostRecentAction === 'Sell') {
@@ -131,7 +135,7 @@ export const AssetBought = ( {setCallPending} ) => {
         //End Pending workaround Part 1
         //ChatGPT test
           //const aiAnalysis = await testChatGPTTwo();
-          const aiAnalysis = await callChatGPTForHoldPrompt(ticker, updateAction, mostRecentBuyDate, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
+        const aiAnalysis = await callChatGPTForHoldPrompt(ticker, updateAction, mostRecentBuyDateTest, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
         //
         //Pending workaround Part 2
         //loadingOverlay.display = "none";
@@ -155,15 +159,49 @@ export const AssetBought = ( {setCallPending} ) => {
     }
 
 
-    const handleSell = (e) => {
+    const handleSell = async (e) => {
         e.preventDefault();
-        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, nextAction}));
-        if (nextAction === 'Sell') {
+        //Update to func
+        scrollTo(0, 0);
+        dispatch(updatePendingState(true));
+        const aiAnalysis = await callChatGPTForSellPrompt(ticker, mostRecentBuyDateTest, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
+        const assetAction = 'Sell';
+        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, assetAction, aiAnalysis}));
+        dispatch(updatePendingState(false));
+        /*if (nextAction === 'Sell') {
             navigate(`/account/${userID}/sold/${assetIDParam}`)
         } else if (nextAction === 'Buy') {
             navigate(`/account/${userID}/bought/${assetIDParam}`)
-        }
-        
+        }*/
+        navigate(`/account/${userID}/sold/${assetIDParam}`)
+        setUpdateInProgress(false);
+        setSellInProgress(false);
+        setUpdatedConfidenceLevel(5);
+        setUpdatedThesis('');
+        setConfidenceLevelSaved(false);
+        setThesisSaved(false);
+        const thesisUpdateInput = document.getElementById('thesis-update');
+        thesisUpdateInput.disabled = false;
+        const confidenceLevelUpdateInput = document.getElementById('confidence-level-update');
+        confidenceLevelUpdateInput.disabled = false;
+    }
+
+    const assetActionBuy = 'Buy';
+    const handleBuy = async (e) => {
+        e.preventDefault();
+        //Update to func
+        scrollTo(0, 0);
+        dispatch(updatePendingState(true));
+        const aiAnalysis = await callChatGPTForBuyPrompt(ticker, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
+        const assetAction = 'Buy';
+        dispatch(sellAsset({assetIDParam, updatedThesis, updatedConfidenceLevel, assetAction, aiAnalysis}));
+        dispatch(updatePendingState(false));
+        /*if (nextAction === 'Sell') {
+            navigate(`/account/${userID}/sold/${assetIDParam}`)
+        } else if (nextAction === 'Buy') {
+            navigate(`/account/${userID}/bought/${assetIDParam}`)
+        }*/
+        navigate(`/account/${userID}/bought/${assetIDParam}`)
         setUpdateInProgress(false);
         setSellInProgress(false);
         setUpdatedConfidenceLevel(5);
@@ -236,7 +274,7 @@ export const AssetBought = ( {setCallPending} ) => {
             <div className={styles.actions}>
                 <h4 className={!chatGPTPending ? styles.pendingHide : styles.pendingShow}>Fetching AI Analysis...</h4>
                 <AssetUpdate handleUpdateClick={handleUpdateClick} handleSubmitUpdate={handleSubmitUpdate} sellInProgress={sellInProgress} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress}/>
-                <AssetSell handleSell={handleSell} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress} nextAction={nextAction}/>
+                <AssetSell handleSell={handleSell} handleBuy={handleBuy} sellInProgress={sellInProgress} handleUpdateClick={handleUpdateClick} thesisSaved={thesisSaved} confidenceLevelSaved={confidenceLevelSaved} updateInProgress={updateInProgress} nextAction={nextAction}/>
             </div>
         </div>
     )
