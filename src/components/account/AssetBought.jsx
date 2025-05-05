@@ -19,8 +19,9 @@ import { generateAIAnalysis } from '../../features/assets/singleAIAnalysisSlice'
 import OpenAI from 'openai';
 import twelvedata from 'twelvedata';
 import { callChatGPTForHoldPrompt } from '../../utils/aiAnalysisAPICall';
+import { updatePendingState } from '../../features/account/pendingCallSlice';
 
-export const AssetBought = () => {
+export const AssetBought = ( {setCallPending} ) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -43,6 +44,14 @@ export const AssetBought = () => {
     const [thesisSaved, setThesisSaved] = useState(false);
     const [sellInProgress, setSellInProgress] = useState(false);
     const [chatGPTPending, setChatGPTPending] = useState(false);
+
+    const loadingOverlay = document.getElementById("loading-overlay");
+
+    /*if (chatGPTPending) {
+        loadingOverlay.display = "block";
+    } else {
+        loadingOverlay.display = "none";
+    }*/
 
 
     let nextAction;
@@ -105,6 +114,7 @@ export const AssetBought = () => {
 
     const dispatch = useDispatch();
     const handleSubmitUpdate = async (e) => {
+        const loadingOverlay = document.getElementById("loading-overlay");
         e.preventDefault();
         let updateAction;
         if (mostRecentAction === 'Watch' || mostRecentAction === 'Sell') {
@@ -113,14 +123,20 @@ export const AssetBought = () => {
             updateAction = 'Hold';
         }
         //Pending workaround Part 1
-        setChatGPTPending(true);
+        //loadingOverlay.display = "block";
+        //setCallPending(true);
+        scrollTo(0, 0);
+        dispatch(updatePendingState(true));
+        //setChatGPTPending(true);
         //End Pending workaround Part 1
         //ChatGPT test
           //const aiAnalysis = await testChatGPTTwo();
           const aiAnalysis = await callChatGPTForHoldPrompt(ticker, updateAction, mostRecentBuyDate, updatedConfidenceLevel, updatedThesis, readableTodaysDate)
         //
         //Pending workaround Part 2
-        setChatGPTPending(false);
+        //loadingOverlay.display = "none";
+        //setChatGPTPending(false);
+        dispatch(updatePendingState(false));
         //End Pending workaround Part 2
 
         //alert(assetIDParam + updatedThesis + updatedConfidenceLevel);

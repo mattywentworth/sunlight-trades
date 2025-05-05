@@ -1,0 +1,57 @@
+.containerShow {
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    display: block;
+    left: 0;
+    /*background-color: hsla(0, 0, 0);*/
+    background-color:rgba(0, 0, 0, 0.8);
+    /*filter: opacity(70%);*/
+}
+
+.containerHide {
+    display: none;
+}
+
+.subContainer {
+    width: 70%;
+    height: 50vh;
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+.subContainer p {
+    padding: 2rem;
+    /*margin: 0 auto;*/
+    text-align: center;
+}
+
+.logoVisual {
+    /*background-color: orange;*/
+    animation: 3s ease-in 1s infinite running logoreveal;
+    margin: 0 auto;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0 0 100px 0;
+    background-image: linear-gradient(135deg, tomato, var(--color-yellow));
+}
+
+@keyframes logoreveal {
+    0% {
+        /*background-image: black;*/
+        width: 0.2rem;
+        height: 0.2rem;
+    }
+
+    /*50% {
+        width: 1.1rem;
+    }*/
+
+    100% {
+        /*background-image: linear-gradient(135deg, tomato, var(--color-yellow));*/
+        width: 7rem;
+        height: 7rem;
+    }
+}
