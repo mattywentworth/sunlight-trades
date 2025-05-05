@@ -16,6 +16,10 @@
     font-size: 1.5rem;
 }
 
+.textOne span {
+    border-bottom: 3px solid black;
+}
+
 .textTwo {
     font-size: 1.5rem;
 }
@@ -24,6 +28,8 @@
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 2rem;
+    font-family: sora, sans-serif;
+    font-weight: 600;
 }
 
 .spacer {
