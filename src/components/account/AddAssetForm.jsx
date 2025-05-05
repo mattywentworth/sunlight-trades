@@ -15,6 +15,7 @@ import { addAssetToAccount, selectAccountAssets } from '../../features/assets/ac
 import { useParams, useNavigate } from 'react-router';
 import { callChatGPTForBuyPrompt } from '../../utils/aiAnalysisAPICall';
 import { convertDateToText } from '../../utils/dates';
+import { updatePendingState } from '../../features/account/pendingCallSlice';
 
 export const AddAssetForm = () => {
 
@@ -46,6 +47,8 @@ export const AddAssetForm = () => {
         const companyName = selectedSearchResult.companyName;
         const logo = selectedSearchResult.icon;
         const costBasis = selectedSearchResult.costBasis;
+        dispatch(updatePendingState(true));
+        scrollTo(0, 0);
         const aiAnalysis = await callChatGPTForBuyPrompt(ticker, confidenceLevel, thesis, todaysDateReadable)
         //alert(costBasis);
         dispatch(addAssetToAccount({ticker, companyName, logo, watchOrBuy, stockOrOptions, assetQty, costBasis, stopLossYesNo, stopLossPercentage, takeProfitYesNo, takeProfitPercentage, confidenceLevel, thesis, aiAnalysis}))
@@ -78,6 +81,7 @@ export const AddAssetForm = () => {
                 }
             ]
         }));*/
+        dispatch(updatePendingState(false));
         const user = params.user;
         if (watchOrBuy === 'Buy') {
             navigate(`/account/${user}/overview/bought`);
