@@ -11,7 +11,7 @@ Sunlight Trades is simple. The purpose is to provide an immutable record of why 
 
 Did you just buy shares of Apple? In Sunlight Trades, you must log your confidence level in Apple as an investment and your investment thesis at the time of purchase. ChatGPT will analyze your thesis and identify strengths and weaknesses of your thesis with a focus on potential psychological pitfalls in your decision-making.
 
-Fast-forward a few days, a week, or more. Did your confidence level change for some reason? Maybe Americans are protesting Apple for having so much of their manufacturing overseas. Perhapst the price of shares in Apple is falling, and your confidence in the investment has fallen some, but you decide to hold. Update your confidence level and thesis in Sunlight Trades, and see the AI analysis of your updated thesis.
+Fast-forward a few days, a week, or more. Did your confidence level change for some reason? Maybe Americans are protesting Apple for having so much of their manufacturing overseas. Perhaps the price of shares in Apple is falling, and your confidence in the investment has fallen some, but you decide to hold. Update your confidence level and thesis in Sunlight Trades, and see the AI analysis of your updated thesis.
 
 Maybe you're making sound decisions, and you're reassured. Or maybe you're alerted to some weaknesses in your reasoning, and the added perspective convinces you that you should sell instead of hold.
 
@@ -20,6 +20,8 @@ In that case, log your new confidence level and thesis, and register in Sunlight
 If you decide to purchase Apple again in the future, you'll see a log of all of your prior confidence levels and investment theses. This extra accountability will help you make decisions more consistently and based off of more sound information.
 
 And it will help you avoid fabricating stories. Maybe you invested in Palantir in 2022, and you're sitting on a 10x return. It would be easy to tell yourself that you're an investing wizard. But what if you could check your Sunlight Trades account and see that the only reason you bought it was because people on Reddit were saying it was the next big thing. You didn't know anything about the company. You just didn't want to feel any FOMO if it happened to take off.
+
+As long as you provide honest input, Sunlight Trades helps you understand what's really driving your investment decisions. That way you can more reliably repeat what you're doing right and avoid repeating what you're doing wrong.
 
 
 ## Technologies
