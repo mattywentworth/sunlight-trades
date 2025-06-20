@@ -62,6 +62,19 @@ export const Login = () => {
         e.preventDefault();
         if (username === password && username.length > 4 && password.length > 4) {
             navigate(`/account/${username}/overview/bought`);
+            pendo.initialize({
+                visitor: {
+                    id: 12345,
+                    email: 'matty@sunlighttrades.com',
+                    firstName: 'Matty',
+                    lastName: 'Wentworth',
+                },
+                account: {
+                    id: 98765,
+                    accountName: 'Sunlight Trades',
+                    payingStatus: 'Flush With Cash',
+                }
+            });
         } else { //Is there any need to clearInterval?
             setLoginWarning('Invalid Credentials');
             setTimeout(() => {
